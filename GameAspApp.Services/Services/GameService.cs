@@ -1,5 +1,5 @@
 ﻿using GameAspApp.Models.DTO;
-using GameAspApp.Database.Domain;
+using GameAspApp.Database.Mocks;
 using GameAspApp.Services.Interfaces;
 using AutoMapper;
 using System.Collections.Generic;
@@ -22,17 +22,7 @@ namespace GameAspApp.Services.Services
         /// <inheritdoc cref="IGameService"/>
         public IEnumerable<GameDto> GetAsync()
         {
-            var games = new List<Game> {
-                new Game
-                {
-                    Id = 1,
-                    ReleaseDate = DateTime.Now,
-                    Developer = "Me",
-                    Publisher = "Me",
-                    Genre = "Programming",
-                    Name = "GameAspApp",
-                    Metascore = 10
-                }};
+            var games = GameMock.GetGames();
             var response = _mapper.Map<IEnumerable<GameDto>>(games);
             return response;
         }
