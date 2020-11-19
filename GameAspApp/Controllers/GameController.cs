@@ -1,30 +1,41 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
+using GameAspApp.Services.Interfaces;
+using GameAspApp.Models.DTO;
 using System.Collections.Generic;
-using System.Linq;
 using GameAspApp.Common.Swagger;
 
 namespace GameAspApp.Controllers
 {
+    /// <summary>
+    /// Контроллер для работы с данными о играх.
+    /// </summary>
     [ApiController]
     [Route("[controller]")]
     [ApiExplorerSettings(GroupName = SwaggerDocParts.Games)]
     public class GameController : ControllerBase
     {
-        [HttpGet]
-        public IEnumerable<Game> Get()
+        private readonly IGameService _gameService;
+
+        /// <summary>
+        /// Конструктор контроллера с DI
+        /// </summary>
+        /// <param name="gameService">Внедряемый сервис</param>
+        public GameController(IGameService gameService)
         {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new Game
-            {
-                ReleaseDate = DateTime.Now.AddDays(index),
-                Name = index.ToString(),
-                Developer = index.ToString(),
-                Publisher = index.ToString(),
-                Metascore = rng.Next(1, 10),
-            })
-            .ToArray();
+            _gameService = gameService;
+        }
+
+        /// <summary>
+        /// Получение перечня игр.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<GameDto>))]
+        public IActionResult Get()
+        {
+            var response = _gameService.GetAsync();
+            return Ok(response);
         }
     }
 }
