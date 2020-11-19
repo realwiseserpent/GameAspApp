@@ -1,15 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Reflection;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using GameAspApp.Services.Bootstrap;
+using GameAspApp.Services.Services;
 using GameAspApp.Common.Swagger;
 
 namespace GameAspApp
@@ -23,16 +20,24 @@ namespace GameAspApp
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+        /// <summary>
+        /// Mетод вызывается для средой исполнения. Используется для регистрации сервисов в IoC контейнере.
+        /// </summary>
+        /// <param name="services">Коллекция сервисов.</param>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.ConfigureServices();
+            services.AddAutoMapper(typeof(GameService).GetTypeInfo().Assembly);
             services.ConfigureSwagger();
 
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary>
+        /// Mетод вызывается для средой исполнения. Используется для конфигурации окружения для обработки HTTP запроса.
+        /// </summary>
+        /// <param name="app">Средство конфигурации приложения.</param>
+        /// <param name="env">Информация об окружении, в котором работает приложение.</param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

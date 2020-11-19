@@ -1,13 +1,16 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
+using GameAspApp.Services.Interfaces;
+using GameAspApp.Models.DTO;
 using System.Collections.Generic;
-using System.Linq;
 using GameAspApp.Common.Swagger;
 using Microsoft.Extensions.Logging;
 
 namespace GameAspApp.Controllers
 {
+    /// <summary>
+    /// Контроллер для работы с данными о играх.
+    /// </summary>
     [ApiController]
     [Route("[controller]")]
     [ApiExplorerSettings(GroupName = SwaggerDocParts.Games)]
@@ -15,26 +18,25 @@ namespace GameAspApp.Controllers
     {
         private const string getMessage = "Games/Get was requested.";
         private readonly ILogger<GameController> _logger;
-
-        public GameController(ILogger<GameController> logger)
+        private readonly IGameService _gameService;
+        
+        /// <summary>
+        /// Конструктор контроллера с DI
+        /// </summary>
+        /// <param name="gameService">Внедряемый сервис</param>
+        public GameController(IGameService gameService, ILogger<GameController> logger)
         {
+            _gameService = gameService;
             _logger = logger;
         }
 
         [HttpGet]
-        public IEnumerable<Game> Get()
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<GameDto>))]
+        public IActionResult Get()
         {
             _logger.LogInformation(getMessage);
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new Game
-            {
-                ReleaseDate = DateTime.Now.AddDays(index),
-                Name = index.ToString(),
-                Developer = index.ToString(),
-                Publisher = index.ToString(),
-                Metascore = rng.Next(1, 10),
-            })
-            .ToArray();
+            var response = _gameService.GetAsync();
+            return Ok(response);
         }
     }
 }
