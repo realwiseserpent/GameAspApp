@@ -21,7 +21,7 @@ namespace GameAspApp.Controllers
             _logger = logger;
         }
 
-        [HttpGet(Name = "Index")]
+        [HttpGet]
         public IEnumerable<Game> Get()
         {
             _logger.LogInformation(getMessage);
