@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using GameAspApp.Common.Swagger;
+using Microsoft.Extensions.Logging;
 
 namespace GameAspApp.Controllers
 {
@@ -12,9 +13,18 @@ namespace GameAspApp.Controllers
     [ApiExplorerSettings(GroupName = SwaggerDocParts.Games)]
     public class GameController : ControllerBase
     {
+        private const string getMessage = "Games/Get was requested.";
+        private readonly ILogger<GameController> _logger;
+
+        public GameController(ILogger<GameController> logger)
+        {
+            _logger = logger;
+        }
+
         [HttpGet]
         public IEnumerable<Game> Get()
         {
+            _logger.LogInformation(getMessage);
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new Game
             {
