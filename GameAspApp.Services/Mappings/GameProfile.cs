@@ -10,7 +10,7 @@ namespace GameAspApp.Services.Mappings
     class GameProfile :Profile
     {
         /// <summary>
-        /// Инициализирует экземпляр <see cref="GameProfile"/>
+        /// Инициализирует экземпляр <see cref="GameProfile"/>.
         /// </summary>
         public GameProfile()
         {
