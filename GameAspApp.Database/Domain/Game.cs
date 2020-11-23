@@ -3,7 +3,7 @@
 namespace GameAspApp.Database.Domain
 {
     /// <summary>
-    /// Класс игры
+    /// Класс объекта Игра.
     /// </summary>
     public class Game
     {

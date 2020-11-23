@@ -12,13 +12,20 @@ namespace GameAspApp.Services.Services
     /// </summary>
     public class GameService : IGameService
     {
+        /// <summary>
+        /// DI маппера.
+        /// </summary>
         private readonly IMapper _mapper;
 
+        /// <summary>
+        /// Конструктор сервиса с DI.
+        /// </summary>
+        /// <param name="mapper">Внедряемый маппер.</param>
         public GameService(IMapper mapper)
         {
             _mapper = mapper;
         }
-
+        
         /// <inheritdoc cref="IGameService"/>
         public IEnumerable<GameDto> GetAsync()
         {

@@ -5,7 +5,7 @@ using System;
 namespace GameAspApp.Models.DTO
 {
     /// <summary>
-    /// DTO для <see cref="Game"/>
+    /// DTO для <see cref="Game"/>.
     /// </summary>
     public class GameDto
     {

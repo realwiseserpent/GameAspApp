@@ -10,7 +10,7 @@ namespace GameAspApp.Database.Mocks
     public class GameMock
     {
         /// <summary>
-        /// Получение коллекции сущности "Игры".
+        /// Получение коллекции сущностей "Игры".
         /// </summary>
         /// <returns>Коллекция сущностей "Игры".</returns>
         public static IEnumerable<Game> GetGames()
