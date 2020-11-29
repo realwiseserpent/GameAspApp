@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using GameAspApp.Services.Bootstrap;
 using GameAspApp.Services.Services;
 using GameAspApp.Common.Swagger;
+using GameAspApp.DAL.Bootstrap;
 
 namespace GameAspApp
 {
@@ -26,6 +27,7 @@ namespace GameAspApp
         /// <param name="services">Коллекция сервисов.</param>
         public void ConfigureServices(IServiceCollection services)
         {
+            services.ConfigureDb(Configuration);
             services.AddControllers();
             services.ConfigureServices();
             services.AddAutoMapper(typeof(GameService).GetTypeInfo().Assembly);

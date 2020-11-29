@@ -16,20 +16,34 @@ namespace GameAspApp.Controllers
     [ApiExplorerSettings(GroupName = SwaggerDocParts.Games)]
     public class GameController : ControllerBase
     {
-        private const string getMessage = "Games/Get was requested.";
-        private readonly ILogger<GameController> _logger;
-        private readonly IGameService _gameService;
-        
         /// <summary>
-        /// Конструктор контроллера с DI
+        /// Сообщение логгера в методе Get.
         /// </summary>
-        /// <param name="gameService">Внедряемый сервис</param>
+        private const string getMessage = "Games/Get was requested.";
+        /// <summary>
+        /// DI логгера.
+        /// </summary>
+        private readonly ILogger<GameController> _logger;
+        /// <summary>
+        /// DI сервиса для игр.
+        /// </summary>
+        private readonly IGameService _gameService;
+
+        /// <summary>
+        /// Конструктор контроллера с DI.
+        /// </summary>
+        /// <param name="gameService">Внедряемый сервис.</param>
+        /// <param name="logger">Внедряемый логгер.</param>
         public GameController(IGameService gameService, ILogger<GameController> logger)
         {
             _gameService = gameService;
             _logger = logger;
         }
 
+        /// <summary>
+        /// Реализация GET для контроллера.
+        /// </summary>
+        /// <returns>Результат запроса.</returns>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<GameDto>))]
         public IActionResult Get()

@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GameAspApp.Database\GameAspApp.Database.csproj" />
+    <ProjectReference Include="..\GameAspApp.DAL\GameAspApp.DAL.csproj" />
   </ItemGroup>
 
 </Project>

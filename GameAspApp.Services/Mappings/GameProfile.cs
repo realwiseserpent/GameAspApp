@@ -1,4 +1,4 @@
-﻿using GameAspApp.Database.Domain;
+﻿using GameAspApp.DAL.Domain;
 using GameAspApp.Models.DTO;
 using AutoMapper;
 
@@ -10,7 +10,7 @@ namespace GameAspApp.Services.Mappings
     class GameProfile :Profile
     {
         /// <summary>
-        /// Инициализирует экземпляр <see cref="GameProfile"/>
+        /// Инициализирует экземпляр <see cref="GameProfile"/>.
         /// </summary>
         public GameProfile()
         {
