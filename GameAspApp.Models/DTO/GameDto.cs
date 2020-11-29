@@ -7,7 +7,7 @@ namespace GameAspApp.Models.DTO
     /// <summary>
     /// DTO для <see cref="Game"/>.
     /// </summary>
-    public class GameDto
+    public class GameDto : BaseDto
     {
         /// <summary>
         /// Дата релиза игры.
@@ -17,12 +17,13 @@ namespace GameAspApp.Models.DTO
         /// <summary>
         /// Разработчик игры.
         /// </summary>
+        [StringLength(100)]
         public string Developer { get; set; }
 
         /// <summary>
         /// Издатель игры.
         /// </summary>
-        [Required]
+        [StringLength(100)]
         public string Publisher { get; set; }
 
         /// <summary>
@@ -35,6 +36,7 @@ namespace GameAspApp.Models.DTO
         /// Название игры.
         /// </summary>
         [Required]
+        [StringLength(100)]
         public string Name { get; set; }
 
         /// <summary>

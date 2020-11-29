@@ -1,12 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using GameAspApp.DAL.Domain;
+using System.ComponentModel.DataAnnotations;
 
-namespace GameAspApp.DAL.Domain
+namespace GameAspApp.Models.DTO
 {
     /// <summary>
-    /// Класс объекта Серия.
+    /// DTO для <see cref="Series"/>.
     /// </summary>
-    public class Series : BaseEntity
+    class SeriesDto : BaseDto
     {
         /// <summary>
         /// Название серии.
