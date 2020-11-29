@@ -5,9 +5,9 @@ using AutoMapper;
 namespace GameAspApp.Services.Mappings
 {
     /// <summary>
-    /// Профиль маппинга (игра).
+    /// Профиль маппинга (Игра).
     /// </summary>
-    class GameProfile :Profile
+    class GameProfile : Profile
     {
         /// <summary>
         /// Инициализирует экземпляр <see cref="GameProfile"/>.
