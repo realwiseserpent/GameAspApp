@@ -6,7 +6,7 @@ namespace GameAspApp.Models.DTO
     /// <summary>
     /// DTO для <see cref="Genre"/>.
     /// </summary>
-    class GenreDto : BaseDto
+    public class GenreDto : BaseDto
     {
         /// <summary>
         /// Название жанра.
