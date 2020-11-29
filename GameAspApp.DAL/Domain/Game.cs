@@ -7,15 +7,8 @@ namespace GameAspApp.DAL.Domain
     /// <summary>
     /// Класс объекта Игра.
     /// </summary>
-    public class Game
+    public class Game : BaseEntity
     {
-        /// <summary>
-        /// Идентификатор записи.
-        /// </summary>
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long Id { get; set; }
-
         /// <summary>
         /// Дата релиза игры.
         /// </summary>

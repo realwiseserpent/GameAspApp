@@ -1,12 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using GameAspApp.DAL.Domain;
+using System.ComponentModel.DataAnnotations;
 
-namespace GameAspApp.DAL.Domain
+namespace GameAspApp.Models.DTO
 {
     /// <summary>
-    /// Класс объекта Жанр.
+    /// DTO для <see cref="Genre"/>.
     /// </summary>
-    public class Genre : BaseEntity
+    class GenreDto : BaseDto
     {
         /// <summary>
         /// Название жанра.

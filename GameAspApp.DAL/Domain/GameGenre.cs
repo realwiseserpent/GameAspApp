@@ -6,15 +6,8 @@ namespace GameAspApp.DAL.Domain
     /// <summary>
     /// Промежуточный класс для описания всех жанров игры.
     /// </summary>
-    public class GameGenre
+    public class GameGenre : BaseEntity
     {
-        /// <summary>
-        /// Идентификатор записи.
-        /// </summary>
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long Id { get; set; }
-
         /// <summary>
         /// Игра.
         /// </summary>
