@@ -1,4 +1,4 @@
-﻿using GameAspApp.Database.Domain;
+﻿using GameAspApp.DAL.Domain;
 using System.ComponentModel.DataAnnotations;
 using System;
 
@@ -29,7 +29,7 @@ namespace GameAspApp.Models.DTO
         /// Жанр игры.
         /// </summary>
         [Required]
-        public string Genre { get; set; }
+        public Series Series { get; set; }
 
         /// <summary>
         /// Название игры.

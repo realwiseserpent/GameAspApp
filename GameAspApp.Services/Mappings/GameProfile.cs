@@ -1,4 +1,4 @@
-﻿using GameAspApp.Database.Domain;
+﻿using GameAspApp.DAL.Domain;
 using GameAspApp.Models.DTO;
 using AutoMapper;
 
