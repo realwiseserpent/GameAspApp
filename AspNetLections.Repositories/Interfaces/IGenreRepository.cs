@@ -7,7 +7,7 @@ namespace GameAspApp.Repositories.Interfaces
     /// <summary>
     /// Интерфейс репозитория для работы с сущностями "Жанр".
     /// </summary>
-    interface IGenreRepository : ICrudRepository<GenreDto, Genre>
+    public interface IGenreRepository : ICrudRepository<GenreDto, Genre>
     {
     }
 }

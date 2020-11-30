@@ -9,6 +9,7 @@ using GameAspApp.Services.Bootstrap;
 using GameAspApp.Services.Services;
 using GameAspApp.Common.Swagger;
 using GameAspApp.DAL.Bootstrap;
+using GameAspApp.Repositories.Bootstrap;
 
 namespace GameAspApp
 {
@@ -28,6 +29,7 @@ namespace GameAspApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.ConfigureDb(Configuration);
+            services.ConfigureRepositories();
             services.AddControllers();
             services.ConfigureServices();
             services.AddAutoMapper(typeof(GameService).GetTypeInfo().Assembly);

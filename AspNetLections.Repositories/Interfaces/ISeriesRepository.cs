@@ -7,7 +7,7 @@ namespace GameAspApp.Repositories.Interfaces
     /// <summary>
     /// Интерфейс репозитория для работы с сущностями "Серия".
     /// </summary>
-    interface ISeriesRepository : ICrudRepository<SeriesDto, Series>
+    public interface ISeriesRepository : ICrudRepository<SeriesDto, Series>
     {
     }
 }
