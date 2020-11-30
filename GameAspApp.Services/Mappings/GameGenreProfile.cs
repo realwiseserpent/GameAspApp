@@ -1,10 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using GameAspApp.DAL.Domain;
+using GameAspApp.Models.DTO;
+using AutoMapper;
 
 namespace GameAspApp.Services.Mappings
 {
-    class GameGenreProfile
+    /// <summary>
+    /// Профиль маппинга (жанр игр).
+    /// </summary>
+    class GameGenreProfile : Profile
     {
+        /// <summary>
+        /// Инициализирует экземпляр <see cref="GameGenreProfile"/>.
+        /// </summary>
+        public GameGenreProfile()
+        {
+            CreateMap<Game, GameDto>();
+        }
     }
 }
