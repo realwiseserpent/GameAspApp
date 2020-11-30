@@ -8,21 +8,21 @@ using GameAspApp.Repositories.Interfaces;
 namespace GameAspApp.Services.Services
 {
     /// <summary>
-    /// Сервис для работы с данными об играх.
+    /// Сервис для работы с данными о жанрах игр.
     /// </summary>
-    public class GameService : IGameService
+    public class GameGenreService : IGameGenreService
     {
         /// <summary>
-        /// Репозиторий для работы с сущностями "Игра".
+        /// Репозиторий для работы с сущностями "Жанры игр".
         /// </summary>
-        private readonly IGameRepository _repository;
+        private readonly IGameGenreRepository _repository;
 
-        public GameService(IGameRepository repository)
+        public GameGenreService(IGameGenreRepository repository)
         {
             _repository = repository;
         }
 
-        public async Task<GameDto> CreateAsync(GameDto dto)
+        public async Task<GameGenreDto> CreateAsync(GameGenreDto dto)
         {
             return await _repository.CreateAsync(dto);
         }
@@ -32,17 +32,17 @@ namespace GameAspApp.Services.Services
             await _repository.DeleteAsync(ids);
         }
 
-        public async Task<GameDto> GetAsync(long id, CancellationToken token = default)
+        public async Task<GameGenreDto> GetAsync(long id, CancellationToken token = default)
         {
             return await GetAsync(id, token);
         }
 
-        public async Task<IEnumerable<GameDto>> GetAsync(CancellationToken token = default)
+        public async Task<IEnumerable<GameGenreDto>> GetAsync(CancellationToken token = default)
         {
             return await GetAsync(token);
         }
 
-        public async Task<GameDto> UpdateAsync(GameDto dto)
+        public async Task<GameGenreDto> UpdateAsync(GameGenreDto dto)
         {
             return await UpdateAsync(dto);
         }
