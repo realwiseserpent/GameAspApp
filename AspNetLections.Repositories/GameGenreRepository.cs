@@ -9,7 +9,7 @@ namespace GameAspApp.Repositories
     /// <summary>
     /// Репозиторий для работы с сущностями "Жанры игр".
     /// </summary>
-    class GameGenreRepository : BaseRepository<GameGenreDto, GameGenre>, IGameGenreRepository
+    public class GameGenreRepository : BaseRepository<GameGenreDto, GameGenre>, IGameGenreRepository
     {
         /// <summary>
         /// Инициализирует экземпляр <see cref="GameGenreRepository"/>.

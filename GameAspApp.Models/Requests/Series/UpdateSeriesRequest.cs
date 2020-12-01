@@ -5,7 +5,7 @@ namespace GameAspApp.Models.Requests.Series
     /// <summary>
     /// Запрос на изменение серии.
     /// </summary>
-    class UpdateSeriesRequest : CreateSeriesRequest
+    public class UpdateSeriesRequest : CreateSeriesRequest
     {
         /// <summary>
         /// Идентификатор сущности.

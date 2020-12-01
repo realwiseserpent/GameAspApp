@@ -57,7 +57,7 @@ namespace GameAspApp.Repositories
         }
 
         /// <inheritdoc cref="IGettableById{TDto, TModel}.GetAsync(long)"/>
-        public async Task<TDto> GetAsync(long id)
+        public async Task<TDto> GetAsync(long id, CancellationToken token = default)
         {
             var entity = await DbSet
                               .AsNoTracking()

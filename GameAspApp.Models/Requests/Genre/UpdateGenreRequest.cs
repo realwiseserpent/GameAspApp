@@ -5,7 +5,7 @@ namespace GameAspApp.Models.Requests.Genre
     /// <summary>
     /// Запрос на изменение жанра.
     /// </summary>
-    class UpdateGenreRequest : CreateGenreRequest
+    public class UpdateGenreRequest : CreateGenreRequest
     {
         /// <summary>
         /// Идентификатор сущности.

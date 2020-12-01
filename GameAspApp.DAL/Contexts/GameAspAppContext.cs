@@ -4,27 +4,27 @@ using Microsoft.EntityFrameworkCore;
 namespace GameAspApp.DAL.Contexts
 {
     /// <summary>
-    /// Контекст для работы с данными БД "Магазины одежды".
+    /// Контекст для работы с данными БД "Игры".
     /// </summary>
     public class GameAspAppContext : DbContext
     {
         /// <summary>
-        /// Магазины.
+        /// Игры.
         /// </summary>
         public DbSet<Game> Games { get; set; }
 
         /// <summary>
-        /// Поставщики.
+        /// Жанры игр.
         /// </summary>
         public DbSet<GameGenre> GameGenres { get; set; }
 
         /// <summary>
-        /// Одежда.
+        /// Жанры.
         /// </summary>
         public DbSet<Genre> Genres { get; set; }
 
         /// <summary>
-        /// Наличие в магазинах.
+        /// Серии игр.
         /// </summary>
         public DbSet<Series> Series { get; set; }
 
@@ -33,8 +33,8 @@ namespace GameAspApp.DAL.Contexts
         /// </summary>
         public GameAspAppContext(DbContextOptions options) : base(options)
         {
-            Database.EnsureDeleted();
-            Database.EnsureCreated();
+            //Database.EnsureDeleted();
+            //Database.EnsureCreated();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using GameAspApp.Models.DTO;
 using System;
 
 namespace GameAspApp.Models.Requests.Game
@@ -6,7 +7,7 @@ namespace GameAspApp.Models.Requests.Game
     /// <summary>
     /// Запрос на создание игры.
     /// </summary>
-    class CreateGameRequest
+    public class CreateGameRequest
     {
         /// <summary>
         /// Дата релиза игры.
@@ -36,5 +37,10 @@ namespace GameAspApp.Models.Requests.Game
         /// Оценка на Metacritic.
         /// </summary>
         public float Metascore { get; set; }
+
+        /// <summary>
+        /// Серия игры.
+        /// </summary>
+        public SeriesDto Series { get; set; }
     }
 }

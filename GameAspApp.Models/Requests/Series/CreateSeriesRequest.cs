@@ -5,7 +5,7 @@ namespace GameAspApp.Models.Requests.Series
     /// <summary>
     /// Запрос на создание серии.
     /// </summary>
-    class CreateSeriesRequest
+    public class CreateSeriesRequest
     {
         /// <summary>
         /// Название серии.

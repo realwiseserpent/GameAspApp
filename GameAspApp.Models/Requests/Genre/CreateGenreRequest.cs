@@ -5,7 +5,7 @@ namespace GameAspApp.Models.Requests.Genre
     /// <summary>
     /// Запрос на создание жанра.
     /// </summary>
-    class CreateGenreRequest
+    public class CreateGenreRequest
     {
         /// <summary>
         /// Название жанра.

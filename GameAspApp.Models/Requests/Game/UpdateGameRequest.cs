@@ -5,7 +5,7 @@ namespace GameAspApp.Models.Requests.Game
     /// <summary>
     /// Запрос на изменение игры.
     /// </summary>
-    class UpdateGameRequest : CreateGameRequest
+    public class UpdateGameRequest : CreateGameRequest
     {
         /// <summary>
         /// Идентификатор сущности.

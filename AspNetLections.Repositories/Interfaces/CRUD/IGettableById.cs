@@ -1,4 +1,6 @@
 ﻿using System.Threading.Tasks;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace GameAspApp.Repositories.Interfaces.CRUD
 {
@@ -14,6 +16,6 @@ namespace GameAspApp.Repositories.Interfaces.CRUD
         /// </summary>
         /// <param name="id">Идентификатор.</param>
         /// <returns>Экземпляр сущности.</returns>
-        Task<TDto> GetAsync(long id);
+        Task<TDto> GetAsync(long id, CancellationToken token = default);
     }
 }

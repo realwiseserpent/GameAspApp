@@ -11,11 +11,13 @@ namespace GameAspApp.DAL.Domain
         /// <summary>
         /// Игра.
         /// </summary>
+        [Required]
         public Game Game { get; set; }
 
         /// <summary>
         /// Жанр.
         /// </summary>
+        [Required]
         public Genre Genre { get; set; }
     }
 }
