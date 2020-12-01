@@ -3,7 +3,7 @@
     /// <summary>
     /// Ответ на запросы для жанра игр.
     /// </summary>
-    class GameGenreResponse
+    public class GameGenreResponse
     {
         /// <summary>
         /// Идентификатор записи.

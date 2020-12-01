@@ -3,7 +3,7 @@
     /// <summary>
     /// Ответ на запросы для жанра.
     /// </summary>
-    class GenreResponse
+    public class GenreResponse
     {
         /// <summary>
         /// Идентификатор записи.

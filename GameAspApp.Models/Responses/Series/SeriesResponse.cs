@@ -3,7 +3,7 @@
     /// <summary>
     /// Ответ на запросы для серии.
     /// </summary>
-    class SeriesResponse
+    public class SeriesResponse
     {
         /// <summary>
         /// Идентификатор записи.

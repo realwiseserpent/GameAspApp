@@ -29,8 +29,7 @@ namespace GameAspApp.Models.DTO
         /// <summary>
         /// Жанр игры.
         /// </summary>
-        [Required]
-        public Series Series { get; set; }
+        public SeriesDto Series { get; set; }
 
         /// <summary>
         /// Название игры.

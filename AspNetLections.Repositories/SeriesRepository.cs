@@ -9,7 +9,7 @@ namespace GameAspApp.Repositories
     /// <summary>
     /// Репозиторий для работы с сущностями "Серия".
     /// </summary>
-    class SeriesRepository : BaseRepository<SeriesDto, Series>, ISeriesRepository
+    public class SeriesRepository : BaseRepository<SeriesDto, Series>, ISeriesRepository
     {
         /// <summary>
         /// Инициализирует экземпляр <see cref="SeriesRepository"/>.

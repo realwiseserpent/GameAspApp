@@ -5,7 +5,7 @@ namespace GameAspApp.Models.Responses.Game
     /// <summary>
     /// Ответ на запросы для игры.
     /// </summary>
-    class GameResponse
+    public class GameResponse
     {
         /// <summary>
         /// Идентификатор записи.
