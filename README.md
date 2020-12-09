@@ -4,4 +4,4 @@
 Класс Game содержит следующие параметры: имя, дата релиза, разработчик, издатель, жанр, оценка на метакритик. 
 По умолчанию, приложение запускается на IIS. 
 
-![ERD](https://user-images.githubusercontent.com/74019811/100550159-6faa2380-3291-11eb-869c-00b53057c5e6.jpg)
+![ERD](https://user-images.githubusercontent.com/74019811/101696446-8de10200-3a8f-11eb-9ae8-00def3bcf570.jpg)
