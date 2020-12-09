@@ -16,7 +16,7 @@ namespace GameAspApp.Repositories.Bootstrap
         {
             services.AddScoped<IGameRepository, GameRepository>();
             services.AddScoped<IGenreRepository, GenreRepository>();
-            services.AddScoped<IGameGenreRepository, GameGenreRepository>();
+            //services.AddScoped<IGameGenreRepository, GameGenreRepository>();
             services.AddScoped<ISeriesRepository, SeriesRepository>();
         }
     }

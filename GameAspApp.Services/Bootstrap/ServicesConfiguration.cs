@@ -17,7 +17,7 @@ namespace GameAspApp.Services.Bootstrap
         {
             services.AddTransient<IGameService, GameService>();
             services.AddTransient<IGenreService, GenreService>();
-            services.AddTransient<IGameGenreService, GameGenreService>();
+            //services.AddTransient<IGameGenreService, GameGenreService>();
             services.AddTransient<ISeriesService, SeriesService>();
         }
     }

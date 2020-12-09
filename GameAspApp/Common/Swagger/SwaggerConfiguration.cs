@@ -31,12 +31,12 @@ namespace GameAspApp.Common.Swagger
                 c.DocumentName = SwaggerDocParts.Genre;
                 c.ApiGroupNames = new[] { SwaggerDocParts.Genre };
             });
-            services.AddSwaggerDocument(c =>
-            {
-                c.Title = SwaggerDocParts.GameGenre;
-                c.DocumentName = SwaggerDocParts.GameGenre;
-                c.ApiGroupNames = new[] { SwaggerDocParts.GameGenre };
-            });
+            //services.AddSwaggerDocument(c =>
+            //{
+            //    c.Title = SwaggerDocParts.GameGenre;
+            //    c.DocumentName = SwaggerDocParts.GameGenre;
+            //    c.ApiGroupNames = new[] { SwaggerDocParts.GameGenre };
+            //});
 
         }
     }

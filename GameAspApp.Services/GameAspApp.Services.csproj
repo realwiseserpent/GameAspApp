@@ -10,9 +10,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AspNetLections.Repositories\GameAspApp.Repositories.csproj" />
     <ProjectReference Include="..\GameAspApp.DAL\GameAspApp.DAL.csproj" />
     <ProjectReference Include="..\GameAspApp.Models\GameAspApp.Models.csproj" />
+    <ProjectReference Include="..\GameAspApp.Repositories\GameAspApp.Repositories.csproj" />
   </ItemGroup>
 
 </Project>
