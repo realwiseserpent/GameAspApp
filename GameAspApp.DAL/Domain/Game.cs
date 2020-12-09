@@ -1,6 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
 
 namespace GameAspApp.DAL.Domain
 {
@@ -42,5 +42,16 @@ namespace GameAspApp.DAL.Domain
         /// Часть серии игр.
         /// </summary>
         public Series Series { get; set; }
+
+        /// <summary>
+        /// Идентификатор серии.
+        /// </summary>
+        public long SeriesId { get; set; }
+
+        /// <summary>
+        /// Список жанров, к которым относится игра.
+        /// </summary>
+        public ICollection<GameGenre> GameGenres { get; set; }
+
     }
 }

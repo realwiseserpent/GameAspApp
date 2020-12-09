@@ -1,4 +1,5 @@
 ﻿using GameAspApp.DAL.Domain;
+using GameAspApp.DAL.Fluent;
 using Microsoft.EntityFrameworkCore;
 
 namespace GameAspApp.DAL.Contexts
@@ -31,10 +32,20 @@ namespace GameAspApp.DAL.Contexts
         /// <summary>
         /// Инициализирует экземпляр <see cref="GameAspAppContext"/>.
         /// </summary>
+        /// <param name="options">Опции для конфигурации контекста.</param>
         public GameAspAppContext(DbContextOptions options) : base(options)
         {
             //Database.EnsureDeleted();
             //Database.EnsureCreated();
+        }
+
+        /// <summary>
+        /// Правила создания сущностей.
+        /// </summary>
+        /// <param name="builder">Билдер моделей.</param>
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.ApplyConfiguration(new GameGenreConfig());
         }
     }
 }

@@ -14,5 +14,11 @@ namespace GameAspApp.DAL.Domain
         [StringLength(100)]
         [Required]
         public string Name { get; set; }
+
+        /// <summary>
+        /// Описание серии.
+        /// </summary>
+        [StringLength(2500)]
+        public string Description { get; set; }
     }
 }

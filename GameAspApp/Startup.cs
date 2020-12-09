@@ -39,8 +39,8 @@ namespace GameAspApp
                 typeof(GameController).GetTypeInfo().Assembly,
                 typeof(SeriesRepository).GetTypeInfo().Assembly,
                 typeof(SeriesController).GetTypeInfo().Assembly,
-                typeof(GameGenreRepository).GetTypeInfo().Assembly,
-                typeof(GameGenreController).GetTypeInfo().Assembly,
+                //typeof(GameGenreRepository).GetTypeInfo().Assembly,
+                //typeof(GameGenreController).GetTypeInfo().Assembly,
                 typeof(GenreRepository).GetTypeInfo().Assembly,
                 typeof(GenreController).GetTypeInfo().Assembly
             );
