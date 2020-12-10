@@ -1,7 +1,7 @@
 using System.Reflection;
 using GameAspApp.Common.Swagger;
 using GameAspApp.Services.Bootstrap;
-using GameAspApp.Services.Services;
+using GameAspApp.UnitOfWork.Bootstrap;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -31,6 +31,7 @@ namespace GameAspApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.ConfigureDb(Configuration);
+            services.ConfigureUnitOfWork();
             services.ConfigureRepositories();
             services.AddControllers();
             services.ConfigureServices();

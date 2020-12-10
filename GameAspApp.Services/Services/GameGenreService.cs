@@ -3,7 +3,8 @@ using GameAspApp.Services.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Threading;
-using GameAspApp.Repositories.Interfaces;
+using System;
+using GameAspApp.UnitOfWork.Interfaces;
 
 namespace GameAspApp.Services.Services
 {
@@ -13,47 +14,79 @@ namespace GameAspApp.Services.Services
     public class GameGenreService : IGameGenreService
     {
         /// <summary>
-        /// Репозиторий для работы с сущностями "Жанры игр".
+        /// Unit of Work для работы с репозиториями.
         /// </summary>
-        private readonly IGameGenreRepository _repository;
+        private readonly IUnitOfWork _uow;
 
         /// <summary>
         /// Инициализирует экземпляр <see cref="GameGenreService"/>.
         /// </summary>
-        /// <param name="repository">Репозиторий.</param>
-        public GameGenreService(IGameGenreRepository repository)
+        /// <param name="uow">Unit of Work.</param>
+        public GameGenreService(IUnitOfWork uow)
         {
-            _repository = repository;
+            _uow = uow;
         }
 
         ///<inheritdoc cref="ICreatable{TDto}.CreateAsync(TDto)"/>
         public async Task<GameGenreDto> CreateAsync(GameGenreDto dto)
         {
-            return await _repository.CreateAsync(dto);
+            using var scope = await _uow.gameGenreRepository.Context.Database.BeginTransactionAsync();
+            try
+            {
+                var gameGenre = await _uow.gameGenreRepository.CreateAsync(dto);
+                scope.Commit();
+                return gameGenre;
+            }
+            catch (Exception ex)
+            {
+                scope.Rollback();
+                throw ex;
+            }
         }
 
         /// <inheritdoc cref="IDeletable.DeleteAsync(long[])"/>
         public async Task DeleteAsync(params long[] ids)
         {
-            await _repository.DeleteAsync(ids);
+            using var scope = await _uow.gameGenreRepository.Context.Database.BeginTransactionAsync();
+            try
+            {
+                await _uow.gameGenreRepository.DeleteAsync(ids);
+                scope.Commit();
+            }
+            catch (Exception ex)
+            {
+                scope.Rollback();
+                throw ex;
+            }
         }
 
         /// <inheritdoc cref="IGettableById{TDto}.GetAsync(long, CancellationToken)"/>
         public async Task<GameGenreDto> GetAsync(long id, CancellationToken token = default)
         {
-            return await GetAsync(id, token);
+            return await _uow.gameGenreRepository.GetAsync(id, token);
         }
 
         /// <inheritdoc cref="IGettable{TDto}.GetAsync(CancellationToken)"/>
         public async Task<IEnumerable<GameGenreDto>> GetAsync(CancellationToken token = default)
         {
-            return await GetAsync(token);
+            return await _uow.gameGenreRepository.GetAsync(token);
         }
 
         /// <inheritdoc cref="IUpdatable{TDto}.UpdateAsync(TDto)"/>
         public async Task<GameGenreDto> UpdateAsync(GameGenreDto dto)
         {
-            return await UpdateAsync(dto);
+            using var scope = await _uow.gameGenreRepository.Context.Database.BeginTransactionAsync();
+            try
+            {
+                var gameGenre = await _uow.gameGenreRepository.UpdateAsync(dto);
+                scope.Commit();
+                return gameGenre;
+            }
+            catch (Exception ex)
+            {
+                scope.Rollback();
+                throw ex;
+            }
         }
     }
 }
