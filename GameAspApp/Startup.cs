@@ -33,7 +33,6 @@ namespace GameAspApp
             services.ConfigureDb(Configuration);
             services.ConfigureUnitOfWork();
             services.ConfigureRepositories();
-
             services.AddControllers();
             services.ConfigureServices();
             services.AddAutoMapper(

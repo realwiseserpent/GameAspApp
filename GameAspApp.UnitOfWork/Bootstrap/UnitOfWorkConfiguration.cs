@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using GameAspApp.UnitOfWork.Interfaces;
 
 namespace GameAspApp.UnitOfWork.Bootstrap
 {

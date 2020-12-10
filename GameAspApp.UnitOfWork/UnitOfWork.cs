@@ -1,6 +1,7 @@
 ﻿using System;
 using GameAspApp.DAL.Contexts;
 using GameAspApp.Repositories.Interfaces;
+using GameAspApp.UnitOfWork.Interfaces;
 
 namespace GameAspApp.UnitOfWork
 {
