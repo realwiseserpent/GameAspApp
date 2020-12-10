@@ -19,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\GameAspApp.Models\GameAspApp.Models.csproj" />
     <ProjectReference Include="..\GameAspApp.Services\GameAspApp.Services.csproj" />
+    <ProjectReference Include="..\GameAspApp.UnitOfWork\GameAspApp.UnitOfWork.csproj" />
   </ItemGroup>
 
 </Project>

@@ -21,9 +21,13 @@ namespace GameAspApp.Repositories
         where TDto : BaseDto
         where TModel : BaseEntity
     {
-        private readonly IMapper _mapper;
+        protected readonly IMapper _mapper;
         protected readonly GameAspAppContext _сontext;
-        protected DbSet<TModel> DbSet => _сontext.Set<TModel>();
+        protected DbSet<TModel> _dbSet => _сontext.Set<TModel>();
+        /// <summary>
+        /// Контекст для работы с данными БД.
+        /// </summary>
+        public GameAspAppContext Context { get { return _сontext; } }
 
         /// <summary>
         /// Инициализирует экземпляр <see cref="BaseRepository{TDto, TModel}"/>.
@@ -40,7 +44,7 @@ namespace GameAspApp.Repositories
         public async Task<TDto> CreateAsync(TDto dto)
         {
             var entity = _mapper.Map<TModel>(dto);
-            await DbSet.AddAsync(entity);
+            await _dbSet.AddAsync(entity);
             await _сontext.SaveChangesAsync();
             return await GetAsync(entity.Id);
         }
@@ -48,7 +52,7 @@ namespace GameAspApp.Repositories
         /// <inheritdoc cref="IDeletable{TDto, TModel}.DeleteAsync(long[])"/>
         public async Task DeleteAsync(params long[] ids)
         {
-            var entities = await DbSet
+            var entities = await _dbSet
                                 .Where(x => ids.Contains(x.Id))
                                 .ToListAsync();
 
@@ -59,7 +63,7 @@ namespace GameAspApp.Repositories
         /// <inheritdoc cref="IGettableById{TDto, TModel}.GetAsync(long)"/>
         public async Task<TDto> GetAsync(long id, CancellationToken token = default)
         {
-            var entity = await DbSet
+            var entity = await DefaultIncludeProperties(_dbSet)
                               .AsNoTracking()
                               .FirstOrDefaultAsync(x => x.Id == id);
 
@@ -82,11 +86,18 @@ namespace GameAspApp.Repositories
         /// <inheritdoc cref="IGettable{TDto, TModel}.GetAsync(CancellationToken)"/>
         public async Task<IEnumerable<TDto>> GetAsync(CancellationToken token = default)
         {
-            var entities = await DbSet.AsNoTracking().ToListAsync();
+            var entities = await DefaultIncludeProperties(_dbSet).AsNoTracking().ToListAsync();
 
             var dtos = _mapper.Map<IEnumerable<TDto>>(entities);
 
             return dtos;
         }
+
+        /// <summary>
+        /// Добавляет к выборке связанные параметры.
+        /// </summary>
+        /// <param name="dbSet">Коллекция DbSet репозитория.</param>
+        protected virtual IQueryable<TModel> DefaultIncludeProperties(DbSet<TModel> dbSet) => dbSet;
+
     }
 }

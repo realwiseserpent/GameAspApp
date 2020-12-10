@@ -3,6 +3,8 @@ using GameAspApp.DAL.Domain;
 using GameAspApp.Models.DTO;
 using GameAspApp.Repositories.Interfaces;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace GameAspApp.Repositories
 {
@@ -18,6 +20,12 @@ namespace GameAspApp.Repositories
         /// <param name="mapper">Маппер.</param>
         public GenreRepository(GameAspAppContext context, IMapper mapper) : base(context, mapper)
         {
+        }
+
+        /// <inheritdoc/>
+        protected override IQueryable<Genre> DefaultIncludeProperties(DbSet<Genre> dbSet)
+        {
+            return _dbSet;
         }
     }
 }

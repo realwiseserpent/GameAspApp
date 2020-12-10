@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameAspApp.DAL", "GameAspAp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameAspApp.Repositories", "GameAspApp.Repositories\GameAspApp.Repositories.csproj", "{9A416742-1B0F-4FB2-BC7B-2F304F010811}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameAspApp.UnitOfWork", "GameAspApp.UnitOfWork\GameAspApp.UnitOfWork.csproj", "{73A048EF-0C0B-4894-B488-870C9ACA3B8D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{9A416742-1B0F-4FB2-BC7B-2F304F010811}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A416742-1B0F-4FB2-BC7B-2F304F010811}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A416742-1B0F-4FB2-BC7B-2F304F010811}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73A048EF-0C0B-4894-B488-870C9ACA3B8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73A048EF-0C0B-4894-B488-870C9ACA3B8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73A048EF-0C0B-4894-B488-870C9ACA3B8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73A048EF-0C0B-4894-B488-870C9ACA3B8D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

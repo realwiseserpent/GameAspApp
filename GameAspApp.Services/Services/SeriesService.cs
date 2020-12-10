@@ -3,7 +3,7 @@ using GameAspApp.Services.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Threading;
-using GameAspApp.Repositories.Interfaces;
+using System;
 
 namespace GameAspApp.Services.Services
 {
@@ -13,47 +13,79 @@ namespace GameAspApp.Services.Services
     public class SeriesService : ISeriesService
     {
         /// <summary>
-        /// Репозиторий для работы с сущностями "Серия".
+        /// Unit of Work для работы с репозиториями.
         /// </summary>
-        private readonly ISeriesRepository _repository;
+        private readonly IUnitOfWork _uow;
 
         /// <summary>
         /// Инициализирует экземпляр <see cref="SeriesService"/>.
         /// </summary>
-        /// <param name="repository">Репозиторий.</param>
-        public SeriesService(ISeriesRepository repository)
+        /// <param name="uow">Unit of Work.</param>
+        public SeriesService(IUnitOfWork uow)
         {
-            _repository = repository;
+            _uow = uow;
         }
 
         ///<inheritdoc cref="ICreatable{TDto}.CreateAsync(TDto)"/>
         public async Task<SeriesDto> CreateAsync(SeriesDto dto)
         {
-            return await _repository.CreateAsync(dto);
+            using var scope = await _uow.seriesRepository.Context.Database.BeginTransactionAsync();
+            try
+            {
+                var series = await _uow.seriesRepository.CreateAsync(dto);
+                scope.Commit();
+                return series;
+            }
+            catch (Exception ex)
+            {
+                scope.Rollback();
+                throw ex;
+            }
         }
 
         /// <inheritdoc cref="IDeletable.DeleteAsync(long[])"/>
         public async Task DeleteAsync(params long[] ids)
         {
-            await _repository.DeleteAsync(ids);
+            using var scope = await _uow.seriesRepository.Context.Database.BeginTransactionAsync();
+            try
+            {
+                await _uow.seriesRepository.DeleteAsync(ids);
+                scope.Commit();
+            }
+            catch (Exception ex)
+            {
+                scope.Rollback();
+                throw ex;
+            }
         }
 
         /// <inheritdoc cref="IGettableById{TDto}.GetAsync(long, CancellationToken)"/>
         public async Task<SeriesDto> GetAsync(long id, CancellationToken token = default)
         {
-            return await GetAsync(id, token);
+            return await _uow.seriesRepository.GetAsync(id, token);
         }
 
         /// <inheritdoc cref="IGettable{TDto}.GetAsync(CancellationToken)"/>
         public async Task<IEnumerable<SeriesDto>> GetAsync(CancellationToken token = default)
         {
-            return await GetAsync(token);
+            return await _uow.seriesRepository.GetAsync(token);
         }
 
         /// <inheritdoc cref="IUpdatable{TDto}.UpdateAsync(TDto)"/>
         public async Task<SeriesDto> UpdateAsync(SeriesDto dto)
         {
-            return await UpdateAsync(dto);
+            using var scope = await _uow.seriesRepository.Context.Database.BeginTransactionAsync();
+            try
+            {
+                var series = await _uow.seriesRepository.UpdateAsync(dto);
+                scope.Commit();
+                return series;
+            }
+            catch (Exception ex)
+            {
+                scope.Rollback();
+                throw ex;
+            }
         }
     }
 }

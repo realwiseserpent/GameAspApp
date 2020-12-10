@@ -16,7 +16,7 @@ namespace GameAspApp.Repositories
         /// </summary>
         /// <param name="context">Контекст данных.</param>
         /// <param name="mapper">Маппер.</param>
-        public GameGenreRepository(GameAspAppContext context, IMapper mapper)// : base(context, mapper)
+        public GameGenreRepository(GameAspAppContext context, IMapper mapper) //: base(context, mapper)
         {
         }
     }

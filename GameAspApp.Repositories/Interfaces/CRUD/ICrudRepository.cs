@@ -1,4 +1,6 @@
-﻿namespace GameAspApp.Repositories.Interfaces.CRUD
+﻿using GameAspApp.DAL.Contexts;
+
+namespace GameAspApp.Repositories.Interfaces.CRUD
 {
     /// <summary>
     /// Интерфейс репозитория с базовыми CRUD-операциями.
@@ -12,5 +14,6 @@
         IUpdatable<TDto, TModel>,
         IDeletable
     {
+        GameAspAppContext Context { get; }
     }
 }
