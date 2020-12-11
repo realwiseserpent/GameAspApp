@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using GameAspApp.Models.DTO;
 using System;
+using System.Collections.Generic;
 
 namespace GameAspApp.Models.Requests.Game
 {
@@ -42,5 +43,10 @@ namespace GameAspApp.Models.Requests.Game
         /// Серия игры.
         /// </summary>
         public SeriesDto Series { get; set; }
+
+        /// <summary>
+        /// Список Id жанров, к которым относится игра.
+        /// </summary>
+        public ICollection<long> Genres { get; set; }
     }
 }

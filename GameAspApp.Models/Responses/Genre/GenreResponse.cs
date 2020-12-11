@@ -14,5 +14,10 @@
         /// Название игры.
         /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// Описание жанра.
+        /// </summary>
+        public string Description { get; set; }
     }
 }

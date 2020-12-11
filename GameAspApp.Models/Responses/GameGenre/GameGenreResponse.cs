@@ -5,9 +5,5 @@
     /// </summary>
     public class GameGenreResponse
     {
-        /// <summary>
-        /// Идентификатор записи.
-        /// </summary>
-        public long Id { get; set; }
     }
 }
