@@ -13,5 +13,11 @@ namespace GameAspApp.Models.Requests.Series
         [Required]
         [StringLength(100)]
         public string Name { get; set; }
+
+        /// <summary>
+        /// Описание серии.
+        /// </summary>
+        [StringLength(2500)]
+        public string Description { get; set; }
     }
 }

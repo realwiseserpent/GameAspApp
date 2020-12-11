@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace GameAspApp.Models.Responses.Game
 {
@@ -36,5 +37,15 @@ namespace GameAspApp.Models.Responses.Game
         /// Оценка на Metacritic.
         /// </summary>
         public float Metascore { get; set; }
+
+        /// <summary>
+        /// Название серии.
+        /// </summary>
+        public string SeriesName { get; set; }
+
+        /// <summary>
+        /// Описание серии.
+        /// </summary>
+        public string SeriesDesc { get; set; }
     }
 }

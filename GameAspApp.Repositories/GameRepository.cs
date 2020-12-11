@@ -5,6 +5,8 @@ using GameAspApp.Repositories.Interfaces;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Threading.Tasks;
+using GameAspApp.Repositories.Interfaces.CRUD;
 
 namespace GameAspApp.Repositories
 {
@@ -20,6 +22,20 @@ namespace GameAspApp.Repositories
         /// <param name="mapper">Маппер.</param>
         public GameRepository(GameAspAppContext context, IMapper mapper) : base(context, mapper)
         {
+        }
+
+        /// <inheritdoc cref="ICreatable{TDto, TModel}.CreateAsync(TDto)"/>
+        public new async Task<GameDto> CreateAsync(GameDto dto)
+        {
+            Game entity = _mapper.Map<Game>(dto);
+            foreach (GameGenre gg in entity.GameGenres)
+            {
+                gg.Entity1 = entity;
+                gg.Entity1Id = entity.Id;
+            }
+            await _dbSet.AddAsync(entity);
+            await _сontext.SaveChangesAsync();
+            return await GetAsync(entity.Id);
         }
 
         /// <inheritdoc/>

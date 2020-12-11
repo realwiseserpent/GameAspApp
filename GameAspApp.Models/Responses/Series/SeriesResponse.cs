@@ -14,5 +14,10 @@
         /// Название серии.
         /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// Описание серии.
+        /// </summary>
+        public string Description { get; set; }
     }
 }

@@ -14,7 +14,9 @@ namespace GameAspApp.Services.Mappings
         /// </summary>
         public GameGenreProfile()
         {
-            CreateMap<GameGenre, GameGenreDto>().ReverseMap();
+            CreateMap<GameGenre, GameGenreDto>().ReverseMap()
+                .ForMember(x => x.Entity1Id, y => y.MapFrom(scr => scr.GameId))
+                .ForMember(x => x.Entity2Id, y => y.MapFrom(scr => scr.GenreId));
         }
     }
 }

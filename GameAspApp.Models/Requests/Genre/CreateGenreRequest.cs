@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
-
+using System.Collections.Generic;
+using GameAspApp.Models.DTO;
+    
 namespace GameAspApp.Models.Requests.Genre
 {
     /// <summary>
@@ -13,5 +15,11 @@ namespace GameAspApp.Models.Requests.Genre
         [Required]
         [StringLength(100)]
         public string Name { get; set; }
+
+        /// <summary>
+        /// Описание жанра.
+        /// </summary>
+        [StringLength(2500)]
+        public string Description { get; set; }
     }
 }

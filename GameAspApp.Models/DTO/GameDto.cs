@@ -1,6 +1,7 @@
 ﻿using GameAspApp.DAL.Domain;
 using System.ComponentModel.DataAnnotations;
 using System;
+using System.Collections.Generic;
 
 namespace GameAspApp.Models.DTO
 {
@@ -27,9 +28,9 @@ namespace GameAspApp.Models.DTO
         public string Publisher { get; set; }
 
         /// <summary>
-        /// Жанр игры.
+        /// Идентификатор серии.
         /// </summary>
-        public SeriesDto Series { get; set; }
+        public long SeriesId { get; set; }
 
         /// <summary>
         /// Название игры.
@@ -42,5 +43,15 @@ namespace GameAspApp.Models.DTO
         /// Оценка на Metacritic.
         /// </summary>
         public float Metascore { get; set; }
+
+        /// <summary>
+        /// Жанр игры.
+        /// </summary>
+        public SeriesDto Series { get; set; }
+
+        /// <summary>
+        /// Список жанров, к которым относится игра.
+        /// </summary>
+        public ICollection<GameGenreDto> GameGenres { get; set; }
     }
 }

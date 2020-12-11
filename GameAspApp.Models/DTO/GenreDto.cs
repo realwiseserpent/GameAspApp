@@ -1,5 +1,6 @@
 ﻿using GameAspApp.DAL.Domain;
 using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
 namespace GameAspApp.Models.DTO
 {
@@ -14,5 +15,11 @@ namespace GameAspApp.Models.DTO
         [StringLength(100)]
         [Required]
         public string Name { get; set; }
+
+        /// <summary>
+        /// Описание жанра.
+        /// </summary>
+        [StringLength(2500)]
+        public string Description { get; set; }
     }
 }

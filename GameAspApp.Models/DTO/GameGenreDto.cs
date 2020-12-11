@@ -6,18 +6,18 @@ namespace GameAspApp.Models.DTO
     /// <summary>
     /// DTO для <see cref="GameGenre"/>.
     /// </summary>
-    public class GameGenreDto : BaseDto
+    public class GameGenreDto
     {
         /// <summary>
-        /// Игра.
+        /// Id игры.
         /// </summary>
         [Required]
-        public GameDto Game { get; set; }
+        public long GameId { get; set; }
 
         /// <summary>
-        /// Жанр.
+        /// Id жанра.
         /// </summary>
         [Required]
-        public GenreDto Genre { get; set; }
+        public long GenreId { get; set; }
     }
 }
