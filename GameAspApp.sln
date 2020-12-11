@@ -5,11 +5,15 @@ VisualStudioVersion = 16.0.30711.63
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameAspApp", "GameAspApp\GameAspApp.csproj", "{3DE07DEC-B61B-48E0-9F4E-07549FCB8070}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameAspApp.Models", "GameAspApp.Models\GameAspApp.Models.csproj", "{C2899C6C-4C9C-4768-8022-58C001DC1A05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameAspApp.Models", "GameAspApp.Models\GameAspApp.Models.csproj", "{C2899C6C-4C9C-4768-8022-58C001DC1A05}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameAspApp.Services", "GameAspApp.Services\GameAspApp.Services.csproj", "{2D18AF09-3E32-4E5E-AAFD-E1C0962C52D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameAspApp.Services", "GameAspApp.Services\GameAspApp.Services.csproj", "{2D18AF09-3E32-4E5E-AAFD-E1C0962C52D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameAspApp.Database", "GameAspApp.Database\GameAspApp.Database.csproj", "{249E9216-1E0F-41AE-8A86-C6623A6017A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameAspApp.DAL", "GameAspApp.DAL\GameAspApp.DAL.csproj", "{11DBA342-3B02-4899-8F41-6C1931D20457}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameAspApp.Repositories", "GameAspApp.Repositories\GameAspApp.Repositories.csproj", "{9A416742-1B0F-4FB2-BC7B-2F304F010811}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameAspApp.UnitOfWork", "GameAspApp.UnitOfWork\GameAspApp.UnitOfWork.csproj", "{73A048EF-0C0B-4894-B488-870C9ACA3B8D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +33,18 @@ Global
 		{2D18AF09-3E32-4E5E-AAFD-E1C0962C52D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D18AF09-3E32-4E5E-AAFD-E1C0962C52D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D18AF09-3E32-4E5E-AAFD-E1C0962C52D9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{249E9216-1E0F-41AE-8A86-C6623A6017A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{249E9216-1E0F-41AE-8A86-C6623A6017A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{249E9216-1E0F-41AE-8A86-C6623A6017A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{249E9216-1E0F-41AE-8A86-C6623A6017A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11DBA342-3B02-4899-8F41-6C1931D20457}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11DBA342-3B02-4899-8F41-6C1931D20457}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11DBA342-3B02-4899-8F41-6C1931D20457}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11DBA342-3B02-4899-8F41-6C1931D20457}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A416742-1B0F-4FB2-BC7B-2F304F010811}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A416742-1B0F-4FB2-BC7B-2F304F010811}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A416742-1B0F-4FB2-BC7B-2F304F010811}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A416742-1B0F-4FB2-BC7B-2F304F010811}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73A048EF-0C0B-4894-B488-870C9ACA3B8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73A048EF-0C0B-4894-B488-870C9ACA3B8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73A048EF-0C0B-4894-B488-870C9ACA3B8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73A048EF-0C0B-4894-B488-870C9ACA3B8D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

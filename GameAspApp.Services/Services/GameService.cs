@@ -1,9 +1,10 @@
 ﻿using GameAspApp.Models.DTO;
-using GameAspApp.Database.Mocks;
 using GameAspApp.Services.Interfaces;
-using AutoMapper;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Threading;
 using System;
+using GameAspApp.UnitOfWork.Interfaces;
 
 namespace GameAspApp.Services.Services
 {
@@ -13,25 +14,79 @@ namespace GameAspApp.Services.Services
     public class GameService : IGameService
     {
         /// <summary>
-        /// DI маппера.
+        /// Unit of Work для работы с репозиториями.
         /// </summary>
-        private readonly IMapper _mapper;
+        private readonly IUnitOfWork _uow;
 
         /// <summary>
-        /// Конструктор сервиса с DI.
+        /// Инициализирует экземпляр <see cref="GameService"/>.
         /// </summary>
-        /// <param name="mapper">Внедряемый маппер.</param>
-        public GameService(IMapper mapper)
+        /// <param name="uow">Unit of Work.</param>
+        public GameService(IUnitOfWork uow)
         {
-            _mapper = mapper;
+            _uow = uow;
         }
-        
-        /// <inheritdoc cref="IGameService"/>
-        public IEnumerable<GameDto> GetAsync()
+
+        ///<inheritdoc cref="ICreatable{TDto}.CreateAsync(TDto)"/>
+        public async Task<GameDto> CreateAsync(GameDto dto)
         {
-            var games = GameMock.GetGames();
-            var response = _mapper.Map<IEnumerable<GameDto>>(games);
-            return response;
+            using var scope = await _uow.gameRepository.Context.Database.BeginTransactionAsync();
+            try
+            {
+                var game = await _uow.gameRepository.CreateAsync(dto);
+                scope.Commit();
+                return game;
+            }
+            catch (Exception ex)
+            {
+                scope.Rollback();
+                throw ex;
+            }
+        }
+
+        /// <inheritdoc cref="IDeletable.DeleteAsync(long[])"/>
+        public async Task DeleteAsync(params long[] ids)
+        {
+            using var scope = await _uow.gameRepository.Context.Database.BeginTransactionAsync();
+            try
+            {
+                await _uow.gameRepository.DeleteAsync(ids);
+                scope.Commit();
+            }
+            catch (Exception ex)
+            {
+                scope.Rollback();
+                throw ex;
+            }
+        }
+
+        /// <inheritdoc cref="IGettableById{TDto}.GetAsync(long, CancellationToken)"/>
+        public async Task<GameDto> GetAsync(long id, CancellationToken token = default)
+        {
+            return await _uow.gameRepository.GetAsync(id, token);
+        }
+
+        /// <inheritdoc cref="IGettable{TDto}.GetAsync(CancellationToken)"/>
+        public async Task<IEnumerable<GameDto>> GetAsync(CancellationToken token = default)
+        {
+            return await _uow.gameRepository.GetAsync(token);
+        }
+
+        /// <inheritdoc cref="IUpdatable{TDto}.UpdateAsync(TDto)"/>
+        public async Task<GameDto> UpdateAsync(GameDto dto)
+        {
+            using var scope = await _uow.gameRepository.Context.Database.BeginTransactionAsync();
+            try
+            {
+                var game = await _uow.gameRepository.UpdateAsync(dto);
+                scope.Commit();
+                return game;
+            }
+            catch (Exception ex)
+            {
+                scope.Rollback();
+                throw ex;
+            }
         }
     }
 }

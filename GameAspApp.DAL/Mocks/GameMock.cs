@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using GameAspApp.Database.Domain;
+using GameAspApp.DAL.Domain;
 using System;
 
-namespace GameAspApp.Database.Mocks
+namespace GameAspApp.DAL.Mocks
 {
     /// <summary>
     /// Mock для коллекции сущностей "Игры".
@@ -22,7 +22,7 @@ namespace GameAspApp.Database.Mocks
                     ReleaseDate = DateTime.Now,
                     Developer = "Me",
                     Publisher = "Me",
-                    Genre = "Programming",
+                    //Genre = "Programming",
                     Name = "GameAspApp",
                     Metascore = 10
                 },
@@ -32,7 +32,7 @@ namespace GameAspApp.Database.Mocks
                     ReleaseDate = Convert.ToDateTime("11.11.11"),
                     Developer = "Bethesda Game Studios",
                     Publisher = "Bethesda Softworks",
-                    Genre = "Action role-playing",
+                    //Genre = "Action role-playing",
                     Name = "GameAspAppTest",
                     Metascore = 9999
                 },
@@ -42,7 +42,7 @@ namespace GameAspApp.Database.Mocks
                     ReleaseDate = DateTime.Now,
                     Developer = "Not Me",
                     Publisher = "Not Me",
-                    Genre = "Testing",
+                    //Genre = "Testing",
                     Name = "GameAspAppTest",
                     Metascore = 4
                 }};
