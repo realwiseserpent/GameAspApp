@@ -7,13 +7,13 @@ namespace GameAspApp.Repositories.Interfaces.CRUD
     /// </summary>
     /// <typeparam name="TDto"></typeparam>
     /// <typeparam name="TModel"></typeparam>
-    public interface ICrudRepository<TDto, TModel> :
+    public interface ICrudRepository<TDto, TModel, TContext> :
         ICreatable<TDto, TModel>,
         IGettableById<TDto, TModel>,
         IGettable<TDto, TModel>,
         IUpdatable<TDto, TModel>,
         IDeletable
     {
-        GameAspAppContext Context { get; }
+        TContext Context { get; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using GameAspApp.Repositories.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
+using GameAspApp.DAL.Contexts;
 
 namespace GameAspApp.Repositories.Bootstrap
 {
@@ -14,10 +15,9 @@ namespace GameAspApp.Repositories.Bootstrap
         /// <param name="services">Коллекция сервисов из Startup.</param>
         public static void ConfigureRepositories(this IServiceCollection services)
         {
-            services.AddScoped<IGameRepository, GameRepository>();
-            services.AddScoped<IGenreRepository, GenreRepository>();
-            //services.AddScoped<IGameGenreRepository, GameGenreRepository>();
-            services.AddScoped<ISeriesRepository, SeriesRepository>();
+            services.AddScoped<IGameRepository<GameAspAppContext>, GameRepository<GameAspAppContext>>();
+            services.AddScoped<IGenreRepository<GameAspAppContext>, GenreRepository<GameAspAppContext>>();
+            services.AddScoped<ISeriesRepository<GameAspAppContext>, SeriesRepository<GameAspAppContext>>();
         }
     }
 }

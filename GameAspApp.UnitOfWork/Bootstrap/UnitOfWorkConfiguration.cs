@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using GameAspApp.UnitOfWork.Interfaces;
+using GameAspApp.DAL.Contexts;
 
 namespace GameAspApp.UnitOfWork.Bootstrap
 {
@@ -14,7 +15,7 @@ namespace GameAspApp.UnitOfWork.Bootstrap
         /// <param name="services">Коллекция сервисов из Startup.</param>
         public static void ConfigureUnitOfWork(this IServiceCollection services)
         {
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUnitOfWork<GameAspAppContext>, UnitOfWork<GameAspAppContext>>();
         }
     }
 }

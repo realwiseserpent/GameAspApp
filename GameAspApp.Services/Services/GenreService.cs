@@ -5,24 +5,25 @@ using System.Threading.Tasks;
 using System.Threading;
 using System;
 using GameAspApp.UnitOfWork.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace GameAspApp.Services.Services
 {
     /// <summary>
     /// Сервис для работы с данными о жанрах.
     /// </summary>
-    public class GenreService : IGenreService
+    public class GenreService<TContext> : IGenreService where TContext : DbContext
     {
         /// <summary>
         /// Unit of Work для работы с репозиториями.
         /// </summary>
-        private readonly IUnitOfWork _uow;
+        private readonly IUnitOfWork<TContext> _uow;
 
         /// <summary>
         /// Инициализирует экземпляр <see cref="GenreService"/>.
         /// </summary>
         /// <param name="uow">Unit of Work.</param>
-        public GenreService(IUnitOfWork uow)
+        public GenreService(IUnitOfWork<TContext> uow)
         {
             _uow = uow;
         }
@@ -30,7 +31,7 @@ namespace GameAspApp.Services.Services
         ///<inheritdoc cref="ICreatable{TDto}.CreateAsync(TDto)"/>
         public async Task<GenreDto> CreateAsync(GenreDto dto)
         {
-            using var scope = await _uow.genreRepository.Context.Database.BeginTransactionAsync();
+            using var scope = await _uow.DbContext.Database.BeginTransactionAsync();
             try
             {
                 var genre = await _uow.genreRepository.CreateAsync(dto);
@@ -47,7 +48,7 @@ namespace GameAspApp.Services.Services
         /// <inheritdoc cref="IDeletable.DeleteAsync(long[])"/>
         public async Task DeleteAsync(params long[] ids)
         {
-            using var scope = await _uow.genreRepository.Context.Database.BeginTransactionAsync();
+            using var scope = await _uow.DbContext.Database.BeginTransactionAsync();
             try
             {
                 await _uow.genreRepository.DeleteAsync(ids);
@@ -75,7 +76,7 @@ namespace GameAspApp.Services.Services
         /// <inheritdoc cref="IUpdatable{TDto}.UpdateAsync(TDto)"/>
         public async Task<GenreDto> UpdateAsync(GenreDto dto)
         {
-            using var scope = await _uow.genreRepository.Context.Database.BeginTransactionAsync();
+            using var scope = await _uow.DbContext.Database.BeginTransactionAsync();
             try
             {
                 var genre = await _uow.genreRepository.UpdateAsync(dto);

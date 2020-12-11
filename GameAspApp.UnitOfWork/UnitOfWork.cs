@@ -1,41 +1,41 @@
 ﻿using System;
-using GameAspApp.DAL.Contexts;
 using GameAspApp.Repositories.Interfaces;
 using GameAspApp.UnitOfWork.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace GameAspApp.UnitOfWork
 {
     /// <summary>
     /// Класс для работы с репозиториями.
     /// </summary>
-    public class UnitOfWork : IUnitOfWork, IDisposable
+    public class UnitOfWork<TContext> : IUnitOfWork<TContext>, IDisposable where TContext : DbContext
     {
         /// <summary>
         /// Репозиторий для работы с сущностями "Игра".
         /// </summary>
-        private readonly IGameRepository _gameRepository;
+        private readonly IGameRepository<TContext> _gameRepository;
         /// <summary>
         /// Репозиторий для работы с сущностями "Жанр".
         /// </summary>
-        private readonly IGenreRepository _genreRepository;
+        private readonly IGenreRepository<TContext> _genreRepository;
         /// <summary>
         /// Репозиторий для работы с сущностями "Жанры игр".
         /// </summary>
-        private readonly IGameGenreRepository _gameGenreRepository;
+        private readonly IGameGenreRepository<TContext> _gameGenreRepository;
         /// <summary>
         /// Репозиторий для работы с сущностями "Серия".
         /// </summary>
-        private readonly ISeriesRepository _seriesRepository;
+        private readonly ISeriesRepository<TContext> _seriesRepository;
         /// <summary>
         /// Контекст для работы с данными БД.
         /// </summary>
-        protected readonly GameAspAppContext _сontext;
+        protected readonly TContext _сontext;
 
-        public IGameRepository gameRepository { get { return _gameRepository; } }
-        public IGenreRepository genreRepository { get { return _genreRepository; } }
-        public IGameGenreRepository gameGenreRepository { get { return _gameGenreRepository; } }
-        public ISeriesRepository seriesRepository { get { return _seriesRepository; } }
-        public GameAspAppContext DbContext { get { return _сontext; } }
+        public IGameRepository<TContext> gameRepository { get { return _gameRepository; } }
+        public IGenreRepository<TContext> genreRepository { get { return _genreRepository; } }
+        public IGameGenreRepository<TContext> gameGenreRepository { get { return _gameGenreRepository; } }
+        public ISeriesRepository<TContext> seriesRepository { get { return _seriesRepository; } }
+        public TContext DbContext { get { return _сontext; } }
 
         private bool disposed = false;
 
@@ -46,10 +46,10 @@ namespace GameAspApp.UnitOfWork
         /// <param name="gameRepository">Репозиторий для работы с сущностями "Игра".</param>
         /// <param name="genreRepository">Репозиторий для работы с сущностями "Жанр".</param>
         /// <param name="seriesRepository">Репозиторий для работы с сущностями "Серия".</param>
-        public UnitOfWork(GameAspAppContext сontext,
-            IGameRepository gameRepository, 
-            IGenreRepository genreRepository,
-            ISeriesRepository seriesRepository)
+        public UnitOfWork(TContext сontext,
+            IGameRepository<TContext> gameRepository, 
+            IGenreRepository<TContext> genreRepository,
+            ISeriesRepository<TContext> seriesRepository)
         {
             _сontext = сontext;
             _gameRepository = gameRepository;

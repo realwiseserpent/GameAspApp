@@ -10,8 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using GameAspApp.DAL.Bootstrap;
 using GameAspApp.Repositories.Bootstrap;
-using GameAspApp.Repositories;
-using GameAspApp.Controllers;
+using GameAspApp.Common.AutoMapper;
 
 namespace GameAspApp
 {
@@ -35,18 +34,8 @@ namespace GameAspApp
             services.ConfigureRepositories();
             services.AddControllers();
             services.ConfigureServices();
-            services.AddAutoMapper(
-                typeof(GameRepository).GetTypeInfo().Assembly,
-                typeof(GameController).GetTypeInfo().Assembly,
-                typeof(SeriesRepository).GetTypeInfo().Assembly,
-                typeof(SeriesController).GetTypeInfo().Assembly,
-                //typeof(GameGenreRepository).GetTypeInfo().Assembly,
-                //typeof(GameGenreController).GetTypeInfo().Assembly,
-                typeof(GenreRepository).GetTypeInfo().Assembly,
-                typeof(GenreController).GetTypeInfo().Assembly
-            );
+            services.ConfigureAutoMapper();
             services.ConfigureSwagger();
-
         }
 
         /// <summary>
