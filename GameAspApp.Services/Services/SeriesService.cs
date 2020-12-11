@@ -30,7 +30,7 @@ namespace GameAspApp.Services.Services
         ///<inheritdoc cref="ICreatable{TDto}.CreateAsync(TDto)"/>
         public async Task<SeriesDto> CreateAsync(SeriesDto dto)
         {
-            using var scope = await _uow.seriesRepository.Context.Database.BeginTransactionAsync();
+            using var scope = await _uow.DbContext.Database.BeginTransactionAsync();
             try
             {
                 var series = await _uow.seriesRepository.CreateAsync(dto);
@@ -47,7 +47,7 @@ namespace GameAspApp.Services.Services
         /// <inheritdoc cref="IDeletable.DeleteAsync(long[])"/>
         public async Task DeleteAsync(params long[] ids)
         {
-            using var scope = await _uow.seriesRepository.Context.Database.BeginTransactionAsync();
+            using var scope = await _uow.DbContext.Database.BeginTransactionAsync();
             try
             {
                 await _uow.seriesRepository.DeleteAsync(ids);
@@ -75,7 +75,7 @@ namespace GameAspApp.Services.Services
         /// <inheritdoc cref="IUpdatable{TDto}.UpdateAsync(TDto)"/>
         public async Task<SeriesDto> UpdateAsync(SeriesDto dto)
         {
-            using var scope = await _uow.seriesRepository.Context.Database.BeginTransactionAsync();
+            using var scope = await _uow.DbContext.Database.BeginTransactionAsync();
             try
             {
                 var series = await _uow.seriesRepository.UpdateAsync(dto);

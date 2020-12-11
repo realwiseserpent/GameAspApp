@@ -35,8 +35,6 @@ namespace GameAspApp.DAL.Contexts
         /// <param name="options">Опции для конфигурации контекста.</param>
         public GameAspAppContext(DbContextOptions options) : base(options)
         {
-            //Database.EnsureDeleted();
-            //Database.EnsureCreated();
         }
 
         /// <summary>
