@@ -19,5 +19,17 @@ namespace GameAspApp.Models.DTO
         /// </summary>
         [Required]
         public long GenreId { get; set; }
+
+        /// <summary>
+        /// Игра.
+        /// </summary>
+        [Required]
+        public GameDto Game { get; set; }
+
+        /// <summary>
+        /// Жанр.
+        /// </summary>
+        [Required]
+        public GenreDto Genre { get; set; }
     }
 }

@@ -15,16 +15,15 @@ namespace GameAspApp.Controllers.Mappings
         /// </summary>
         public GameProfile()
         {
-            CreateMap <long, GameGenreDto>()
-                .ForMember(x => x.GenreId, y => y.MapFrom(src => src));
+
             CreateMap<CreateGameRequest, GameDto>()
                 .ForMember(x => x.SeriesId, y => y.MapFrom(src => src.Series.Id))
                 .ForMember(x => x.GameGenres, y => y.MapFrom(src => src.Genres));
             CreateMap<UpdateGameRequest, GameDto>();
             CreateMap<GameDto, GameResponse>()
                 .ForMember(x => x.SeriesName, y => y.MapFrom(src => src.Series.Name))
-                .ForMember(x => x.SeriesDesc, y => y.MapFrom(src => src.Series.Description));
-
+                .ForMember(x => x.SeriesDesc, y => y.MapFrom(src => src.Series.Description))
+                .ForMember(x => x.Genres, y => y.MapFrom(scr => scr.GameGenres));
         }
     }
 }

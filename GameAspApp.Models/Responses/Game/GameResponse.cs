@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using GameAspApp.Models.DTO;
 
 namespace GameAspApp.Models.Responses.Game
 {
@@ -47,5 +48,10 @@ namespace GameAspApp.Models.Responses.Game
         /// Описание серии.
         /// </summary>
         public string SeriesDesc { get; set; }
+
+        /// <summary>
+        /// Список жанров, к которым относится игра.
+        /// </summary>
+        public ICollection<GenreDto> Genres { get; set; }
     }
 }
