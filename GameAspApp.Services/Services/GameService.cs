@@ -33,6 +33,23 @@ namespace GameAspApp.Services.Services
             using var scope = await _uow.DbContext.Database.BeginTransactionAsync();
             try
             {
+                SeriesDto series = await _uow.seriesRepository.GetAsync(dto.Series.Name);
+                ICollection <GameGenreDto> gameGenre = dto.GameGenres;
+                if (null != series)
+                {
+                    dto.Series = null;
+                    dto.SeriesId = series.Id;
+                }
+                foreach (GameGenreDto gg in gameGenre)
+                {
+                    GenreDto genre = await _uow.genreRepository.GetAsync(gg.Genre.Name);
+                    if (null != genre)
+                    {
+                        gg.Genre = null;
+                        gg.GenreId = genre.Id;
+                    }
+                    gg.Game = dto;
+                }
                 var game = await _uow.gameRepository.CreateAsync(dto);
                 scope.Commit();
                 return game;

@@ -33,8 +33,12 @@ namespace GameAspApp.Services.Services
             using var scope = await _uow.DbContext.Database.BeginTransactionAsync();
             try
             {
-                var genre = await _uow.genreRepository.CreateAsync(dto);
-                scope.Commit();
+                var genre = await _uow.genreRepository.GetAsync(dto.Name);
+                if (genre == null)
+                {
+                    genre = await _uow.genreRepository.CreateAsync(dto);
+                    scope.Commit();
+                }
                 return genre;
             }
             catch (Exception ex)
