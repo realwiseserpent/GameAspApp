@@ -30,7 +30,7 @@ namespace GameAspApp.Services.Services
         ///<inheritdoc cref="ICreatable{TDto}.CreateAsync(TDto)"/>
         public async Task<GenreDto> CreateAsync(GenreDto dto)
         {
-            using var scope = await _uow.genreRepository.Context.Database.BeginTransactionAsync();
+            using var scope = await _uow.DbContext.Database.BeginTransactionAsync();
             try
             {
                 var genre = await _uow.genreRepository.GetAsync(dto.Name);
@@ -51,7 +51,7 @@ namespace GameAspApp.Services.Services
         /// <inheritdoc cref="IDeletable.DeleteAsync(long[])"/>
         public async Task DeleteAsync(params long[] ids)
         {
-            using var scope = await _uow.genreRepository.Context.Database.BeginTransactionAsync();
+            using var scope = await _uow.DbContext.Database.BeginTransactionAsync();
             try
             {
                 await _uow.genreRepository.DeleteAsync(ids);
@@ -79,7 +79,7 @@ namespace GameAspApp.Services.Services
         /// <inheritdoc cref="IUpdatable{TDto}.UpdateAsync(TDto)"/>
         public async Task<GenreDto> UpdateAsync(GenreDto dto)
         {
-            using var scope = await _uow.genreRepository.Context.Database.BeginTransactionAsync();
+            using var scope = await _uow.DbContext.Database.BeginTransactionAsync();
             try
             {
                 var genre = await _uow.genreRepository.UpdateAsync(dto);
