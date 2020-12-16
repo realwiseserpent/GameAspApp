@@ -45,8 +45,8 @@ namespace GameAspApp.Models.Requests.Game
         public SeriesDto Series { get; set; }
 
         /// <summary>
-        /// Список Id жанров, к которым относится игра.
+        /// Список жанров, к которым относится игра.
         /// </summary>
-        public ICollection<long> Genres { get; set; }
+        public ICollection<GenreDto> Genres { get; set; }
     }
 }

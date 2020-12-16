@@ -30,9 +30,26 @@ namespace GameAspApp.Services.Services
         ///<inheritdoc cref="ICreatable{TDto}.CreateAsync(TDto)"/>
         public async Task<GameDto> CreateAsync(GameDto dto)
         {
-            using var scope = await _uow.gameRepository.Context.Database.BeginTransactionAsync();
+            using var scope = await _uow.DbContext.Database.BeginTransactionAsync();
             try
             {
+                SeriesDto series = await _uow.seriesRepository.GetAsync(dto.Series.Name);
+                ICollection <GameGenreDto> gameGenre = dto.GameGenres;
+                if (null != series)
+                {
+                    dto.Series = null;
+                    dto.SeriesId = series.Id;
+                }
+                foreach (GameGenreDto gg in gameGenre)
+                {
+                    GenreDto genre = await _uow.genreRepository.GetAsync(gg.Genre.Name);
+                    if (null != genre)
+                    {
+                        gg.Genre = null;
+                        gg.GenreId = genre.Id;
+                    }
+                    gg.Game = dto;
+                }
                 var game = await _uow.gameRepository.CreateAsync(dto);
                 scope.Commit();
                 return game;
@@ -47,7 +64,7 @@ namespace GameAspApp.Services.Services
         /// <inheritdoc cref="IDeletable.DeleteAsync(long[])"/>
         public async Task DeleteAsync(params long[] ids)
         {
-            using var scope = await _uow.gameRepository.Context.Database.BeginTransactionAsync();
+            using var scope = await _uow.DbContext.Database.BeginTransactionAsync();
             try
             {
                 await _uow.gameRepository.DeleteAsync(ids);
@@ -75,7 +92,7 @@ namespace GameAspApp.Services.Services
         /// <inheritdoc cref="IUpdatable{TDto}.UpdateAsync(TDto)"/>
         public async Task<GameDto> UpdateAsync(GameDto dto)
         {
-            using var scope = await _uow.gameRepository.Context.Database.BeginTransactionAsync();
+            using var scope = await _uow.DbContext.Database.BeginTransactionAsync();
             try
             {
                 var game = await _uow.gameRepository.UpdateAsync(dto);
