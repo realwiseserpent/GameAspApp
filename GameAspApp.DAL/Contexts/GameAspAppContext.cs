@@ -33,7 +33,7 @@ namespace GameAspApp.DAL.Contexts
         /// Инициализирует экземпляр <see cref="GameAspAppContext"/>.
         /// </summary>
         /// <param name="options">Опции для конфигурации контекста.</param>
-        public GameAspAppContext(DbContextOptions options) : base(options)
+        public GameAspAppContext(DbContextOptions<GameAspAppContext> options) : base(options)
         {
         }
 

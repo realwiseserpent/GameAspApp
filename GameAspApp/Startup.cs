@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using GameAspApp.DAL.Bootstrap;
+using GameAspApp.JwtAuth.DAL.Bootstrap;
 using GameAspApp.Repositories.Bootstrap;
 using GameAspApp.Repositories;
 using GameAspApp.Controllers;
@@ -31,6 +32,7 @@ namespace GameAspApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.ConfigureDb(Configuration);
+            services.ConfigureAuthDb(Configuration);
             services.ConfigureUnitOfWork();
             services.ConfigureRepositories();
             services.AddControllers();
