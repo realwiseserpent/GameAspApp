@@ -9,6 +9,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using GameAspApp.DAL.Bootstrap;
+using GameAspApp.JwtAuth.DAL.Bootstrap;
+using GameAspApp.JwtAuth.Bootstrap;
 using GameAspApp.Repositories.Bootstrap;
 using GameAspApp.Repositories;
 using GameAspApp.Controllers;
@@ -31,17 +33,19 @@ namespace GameAspApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.ConfigureDb(Configuration);
+            services.ConfigureAuthDb(Configuration);
+            services.ConfigureJwt(Configuration);
+
             services.ConfigureUnitOfWork();
             services.ConfigureRepositories();
             services.AddControllers();
+
             services.ConfigureServices();
             services.AddAutoMapper(
                 typeof(GameRepository).GetTypeInfo().Assembly,
                 typeof(GameController).GetTypeInfo().Assembly,
                 typeof(SeriesRepository).GetTypeInfo().Assembly,
                 typeof(SeriesController).GetTypeInfo().Assembly,
-                //typeof(GameGenreRepository).GetTypeInfo().Assembly,
-                //typeof(GameGenreController).GetTypeInfo().Assembly,
                 typeof(GenreRepository).GetTypeInfo().Assembly,
                 typeof(GenreController).GetTypeInfo().Assembly
             );
@@ -61,9 +65,12 @@ namespace GameAspApp
                 app.UseDeveloperExceptionPage();
             }
             app.UseHttpsRedirection();
+            app.UseSwagger();
+            app.ConfigureSwaggerEndpoints();
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -71,8 +78,6 @@ namespace GameAspApp
                 endpoints.MapControllers();
             });
             app.UseCors();
-            app.UseOpenApi();
-            app.UseSwaggerUi3();
         }
     }
 }
