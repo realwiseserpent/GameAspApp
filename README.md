@@ -5,4 +5,4 @@
 По умолчанию, приложение запускается на IIS. 
 Устранена уязвимость жестко заданного пароля, из файла appsettings.json удалена строка подключения к БД.
 
-![ERD](https://user-images.githubusercontent.com/74019811/101696446-8de10200-3a8f-11eb-9ae8-00def3bcf570.jpg)
+![ERD3](https://user-images.githubusercontent.com/74019811/103113089-7484ac00-4672-11eb-8057-85f7c8efaf25.jpg)

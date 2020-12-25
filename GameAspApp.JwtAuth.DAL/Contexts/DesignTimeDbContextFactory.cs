@@ -6,13 +6,16 @@ using System.IO;
 
 namespace GameAspApp.JwtAuth.DAL.Contexts
 {
+    /// <summary>
+    /// Фабрика для создания нового контекста в процессе миграций.
+    /// </summary>
     internal sealed class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<GameAspAppJwtContext>
     {
         /// <summary>
-        /// Create context instanxe.
+        /// Создание контекста для миграций.
         /// </summary>
-        /// <param name="args">Migration args.</param>
-        /// <returns>Db context.</returns>
+        /// <param name="args">Строковые аргументы миграций.</param>
+        /// <returns>Контекст.</returns>
         public GameAspAppJwtContext CreateDbContext(string[] args)
         {
             var configuration = new ConfigurationBuilder()
