@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameAspApp.Repositories", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameAspApp.UnitOfWork", "GameAspApp.UnitOfWork\GameAspApp.UnitOfWork.csproj", "{73A048EF-0C0B-4894-B488-870C9ACA3B8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameAspApp.JwtAuth.DAL", "GameAspApp.JwtAuth.DAL\GameAspApp.JwtAuth.DAL.csproj", "{FC575754-155F-4549-B269-4176112B2DA7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameAspApp.JwtAuth.DAL", "GameAspApp.JwtAuth.DAL\GameAspApp.JwtAuth.DAL.csproj", "{FC575754-155F-4549-B269-4176112B2DA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameAspApp.JwtAuth", "GameAspApp.JwtAuth\GameAspApp.JwtAuth.csproj", "{6E0F044A-A55C-4F12-8714-A13AFF2D85E6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{FC575754-155F-4549-B269-4176112B2DA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC575754-155F-4549-B269-4176112B2DA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC575754-155F-4549-B269-4176112B2DA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E0F044A-A55C-4F12-8714-A13AFF2D85E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E0F044A-A55C-4F12-8714-A13AFF2D85E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E0F044A-A55C-4F12-8714-A13AFF2D85E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E0F044A-A55C-4F12-8714-A13AFF2D85E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

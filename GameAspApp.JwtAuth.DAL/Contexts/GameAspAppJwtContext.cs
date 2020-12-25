@@ -4,7 +4,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GameAspApp.JwtAuth.DAL.Contexts
 {
-    class GameAspAppJwtContext : DbContext
+    /// <summary>
+    /// Контекст для работы с данными БД "Пользователи".
+    /// </summary>
+    public class GameAspAppJwtContext : DbContext
     {
         /// <summary>
         /// Пользователи.

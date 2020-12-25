@@ -8,7 +8,7 @@
         /// <summary>
         /// Константа для swagger-документа "Игры".
         /// </summary>
-        public const string Games = nameof(Games);
+        public const string Game = nameof(Game);
         /// <summary>
         /// Константа для swagger-документа "Серия".
         /// </summary>
@@ -21,5 +21,9 @@
         /// Константа для swagger-документа "Жанр игр".
         /// </summary>
         public const string GameGenre = nameof(GameGenre);
+        /// <summary>
+        /// Константа для swagger-документа "Аккаунт".
+        /// </summary>
+        public const string Account = nameof(Account);
     }
 }

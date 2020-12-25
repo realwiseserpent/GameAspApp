@@ -6,15 +6,15 @@ using Microsoft.Extensions.DependencyInjection;
 namespace GameAspApp.JwtAuth.DAL.Bootstrap
 {
     /// <summary>
-    /// Db configuration.
+    /// Конфигурации БД.
     /// </summary>
     public static class DbConfigurations
     {
         /// <summary>
-        /// Add DbContext.
+        /// Подключение DbContext.
         /// </summary>
-        /// <param name="services">Service collection.</param>
-        /// <param name="configuration">Config.</param>
+        /// <param name="services">Коллекция сервисов.</param>
+        /// <param name="configuration">Конфигурация.</param>
         public static void ConfigureAuthDb(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<GameAspAppJwtContext>(

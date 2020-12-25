@@ -1,11 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <UserSecretsId>2bbda9d7-8ccc-4fb5-9d20-db7d5145fd5a</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -14,11 +15,12 @@
     <PackageReference Include="NLog.Web.AspNetCore" Version="4.9.3" />
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
-    <PackageReference Include="NSwag.AspNetCore" Version="13.9.4" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\GameAspApp.JwtAuth.DAL\GameAspApp.JwtAuth.DAL.csproj" />
+    <ProjectReference Include="..\GameAspApp.JwtAuth\GameAspApp.JwtAuth.csproj" />
     <ProjectReference Include="..\GameAspApp.Models\GameAspApp.Models.csproj" />
     <ProjectReference Include="..\GameAspApp.Services\GameAspApp.Services.csproj" />
     <ProjectReference Include="..\GameAspApp.UnitOfWork\GameAspApp.UnitOfWork.csproj" />
