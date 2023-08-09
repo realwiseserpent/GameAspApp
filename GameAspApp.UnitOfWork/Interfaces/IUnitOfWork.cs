@@ -1,22 +1,21 @@
-﻿using GameAspApp.DAL.Contexts;
-using GameAspApp.Repositories.Interfaces;
+﻿using GameAspApp.Repositories.Interfaces;
 
 namespace GameAspApp.UnitOfWork.Interfaces
 {
     /// <summary>
     /// Интерфейс Unit of Work.
     /// </summary>
-    public interface IUnitOfWork
+    public interface IUnitOfWork<TContext>
     {
-        public GameAspAppContext DbContext
+        public TContext DbContext
         { get; }
-        public IGameRepository gameRepository
+        public IGameRepository<TContext> gameRepository
         { get; }
-        public IGenreRepository genreRepository
+        public IGenreRepository<TContext> genreRepository
         { get; }
-        public IGameGenreRepository gameGenreRepository
+        public IGameGenreRepository<TContext> gameGenreRepository
         { get; }
-        public ISeriesRepository seriesRepository
+        public ISeriesRepository<TContext> seriesRepository
         { get; }
     }
 }

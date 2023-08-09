@@ -1,6 +1,7 @@
 ﻿using GameAspApp.Services.Interfaces;
 using GameAspApp.Services.Services;
 using Microsoft.Extensions.DependencyInjection;
+using GameAspApp.DAL.Contexts;
 
 namespace GameAspApp.Services.Bootstrap
 {
@@ -15,10 +16,10 @@ namespace GameAspApp.Services.Bootstrap
         /// <param name="services">Коллекция сервисов из Startup.</param>
         public static void ConfigureServices(this IServiceCollection services)
         {
-            services.AddTransient<IGameService, GameService>();
-            services.AddTransient<IGenreService, GenreService>();
+            services.AddTransient<IGameService, GameService<GameAspAppContext>>();
+            services.AddTransient<IGenreService, GenreService<GameAspAppContext>>();
             //services.AddTransient<IGameGenreService, GameGenreService>();
-            services.AddTransient<ISeriesService, SeriesService>();
+            services.AddTransient<ISeriesService, SeriesService<GameAspAppContext>>();
         }
     }
 }

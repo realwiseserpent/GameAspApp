@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using GameAspApp.DAL.Contexts;
 using GameAspApp.DAL.Domain;
 using GameAspApp.Models.DTO;
 using GameAspApp.Repositories.Interfaces.CRUD;
@@ -17,24 +16,25 @@ namespace GameAspApp.Repositories
     /// </summary>
     /// <typeparam name="TDto">DTO.</typeparam>
     /// <typeparam name="TModel">Доменная модель.</typeparam>
-    public abstract class BaseRepository<TDto, TModel> : ICrudRepository<TDto, TModel>
+    public abstract class BaseRepository<TDto, TModel, TContext> : ICrudRepository<TDto, TModel, TContext>
         where TDto : BaseDto
         where TModel : BaseEntity
+        where TContext: DbContext
     {
         protected readonly IMapper _mapper;
-        protected readonly GameAspAppContext _сontext;
+        protected readonly TContext _сontext;
         protected DbSet<TModel> _dbSet => _сontext.Set<TModel>();
         /// <summary>
         /// Контекст для работы с данными БД.
         /// </summary>
-        public GameAspAppContext Context { get { return _сontext; } }
+        public TContext Context { get { return _сontext; } }
 
         /// <summary>
         /// Инициализирует экземпляр <see cref="BaseRepository{TDto, TModel}"/>.
         /// </summary>
         /// <param name="context">Контекст данных.</param>
         /// <param name="mapper">Маппер.</param>
-        protected BaseRepository(GameAspAppContext context, IMapper mapper)
+        protected BaseRepository(TContext context, IMapper mapper)
         {
             _сontext = context;
             _mapper = mapper;

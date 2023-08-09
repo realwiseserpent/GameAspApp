@@ -5,24 +5,25 @@ using System.Threading.Tasks;
 using System.Threading;
 using System;
 using GameAspApp.UnitOfWork.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace GameAspApp.Services.Services
 {
     /// <summary>
     /// Сервис для работы с данными о жанрах игр.
     /// </summary>
-    public class GameGenreService : IGameGenreService
+    public class GameGenreService<TContext> : IGameGenreService where TContext : DbContext
     {
         /// <summary>
         /// Unit of Work для работы с репозиториями.
         /// </summary>
-        private readonly IUnitOfWork _uow;
+        private readonly IUnitOfWork<TContext> _uow;
 
         /// <summary>
         /// Инициализирует экземпляр <see cref="GameGenreService"/>.
         /// </summary>
         /// <param name="uow">Unit of Work.</param>
-        public GameGenreService(IUnitOfWork uow)
+        public GameGenreService(IUnitOfWork<TContext> uow)
         {
             _uow = uow;
         }
