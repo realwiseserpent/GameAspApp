@@ -60,7 +60,7 @@ namespace GameAspApp.Repositories
             await _сontext.SaveChangesAsync();
         }
 
-        /// <inheritdoc cref="IGettableById{TDto, TModel}.GetAsync(long)"/>
+        /// <inheritdoc cref="IGettableById{TDto, TModel}.GetAsync(long, CancellationToken)"/>
         public async Task<TDto> GetAsync(long id, CancellationToken token = default)
         {
             var entity = await DefaultIncludeProperties(_dbSet)

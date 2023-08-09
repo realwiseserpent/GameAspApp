@@ -10,6 +10,8 @@ using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authorization;
+using GameAspApp.JwtAuth;
 
 namespace GameAspApp.Controllers
 {
@@ -18,6 +20,7 @@ namespace GameAspApp.Controllers
     /// </summary>
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     [ApiExplorerSettings(GroupName = SwaggerDocParts.Genre)]
     public class GenreController : ControllerBase
     {
@@ -52,6 +55,7 @@ namespace GameAspApp.Controllers
         /// </summary>
         /// <returns>Коллекция сущностей "Жанр".</returns>
         [HttpGet]
+        [AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<GenreResponse>))]
         public async Task<IActionResult> GetAsync(CancellationToken cancellationToken)
         {
@@ -65,6 +69,7 @@ namespace GameAspApp.Controllers
         /// </summary>
         /// <returns>Cущность "Жанр".</returns>
         [HttpGet("{id}")]
+        [Authorize(Roles = UserRoles.Default)]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GenreResponse))]
         public async Task<IActionResult> GetByIdAsync(long id, CancellationToken cancellationToken)
         {
@@ -78,6 +83,7 @@ namespace GameAspApp.Controllers
         /// </summary>
         /// <returns>Cущность "Жанр".</returns>
         [HttpPost]
+        [Authorize(Roles = UserRoles.Admin)]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GenreResponse))]
         public async Task<IActionResult> PostAsync(CreateGenreRequest request, CancellationToken cancellationToken)
         {
@@ -91,6 +97,7 @@ namespace GameAspApp.Controllers
         /// </summary>
         /// <returns>Cущность "Жанр".</returns>
         [HttpPut]
+        [Authorize(Roles = UserRoles.Admin)]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GenreResponse))]
         public async Task<IActionResult> PutAsync(UpdateGenreRequest request, CancellationToken cancellationToken)
         {
@@ -103,6 +110,7 @@ namespace GameAspApp.Controllers
         /// Удаление сущностей "Жанр".
         /// </summary>
         [HttpDelete]
+        [Authorize(Roles = UserRoles.Admin)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> DeleteAsync(CancellationToken cancellationToken, params long[] ids)
         {

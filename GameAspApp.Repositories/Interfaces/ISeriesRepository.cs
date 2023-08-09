@@ -2,6 +2,8 @@
 using GameAspApp.Models.DTO;
 using GameAspApp.Repositories.Interfaces.CRUD;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace GameAspApp.Repositories.Interfaces
 {
@@ -11,5 +13,12 @@ namespace GameAspApp.Repositories.Interfaces
     public interface ISeriesRepository<TContext> : 
         ICrudRepository<SeriesDto, Series, TContext>
     {
+        /// <summary>
+        /// Получение сущности по названию.
+        /// </summary>
+        /// <param name="name">название</param>
+        /// <param name="token"></param>
+        /// <returns>Экземпляр сущности.</returns>
+        Task<SeriesDto> GetAsync(string name, CancellationToken token = default);
     }
 }

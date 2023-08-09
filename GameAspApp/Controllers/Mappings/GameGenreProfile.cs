@@ -18,6 +18,13 @@ namespace GameAspApp.Controllers.Mappings
             CreateMap<CreateGameGenreRequest, GameGenreDto>();
             CreateMap<UpdateGameGenreRequest, GameGenreDto>();
             CreateMap<GameGenreDto, GameGenreResponse>();
+            CreateMap<GameGenreDto, GenreDto>()
+                .ForMember(x => x.Id, y => y.MapFrom(src => src.GenreId))
+                .ForMember(x => x.Name, y => y.MapFrom(src => src.Genre.Name))
+                .ForMember(x => x.Description, y => y.MapFrom(src => src.Genre.Description));
+            CreateMap<GenreDto, GameGenreDto>()
+                .ForMember(x => x.Genre, y => y.MapFrom(src => src))
+                .ForMember(x => x.GenreId, y => y.MapFrom(src => src.Id));
         }
     }
 }

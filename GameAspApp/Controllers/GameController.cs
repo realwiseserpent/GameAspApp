@@ -10,6 +10,8 @@ using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authorization;
+using GameAspApp.JwtAuth;
 
 namespace GameAspApp.Controllers
 {
@@ -18,7 +20,8 @@ namespace GameAspApp.Controllers
     /// </summary>
     [ApiController]
     [Route("[controller]")]
-    [ApiExplorerSettings(GroupName = SwaggerDocParts.Games)]
+    [Authorize]
+    [ApiExplorerSettings(GroupName = SwaggerDocParts.Game)]
     public class GameController : ControllerBase
     {
         /// <summary>
@@ -35,7 +38,7 @@ namespace GameAspApp.Controllers
         private readonly IMapper _mapper;
 
         /// <summary>
-        /// Инициализирует экземпляр <see cref="GameController"/>
+        /// Инициализирует экземпляр <see cref="GameController"/>.
         /// </summary>
         /// <param name="gameService">Сервис игр.</param>
         /// <param name="logger">Логгер.</param>
@@ -52,6 +55,7 @@ namespace GameAspApp.Controllers
         /// </summary>
         /// <returns>Коллекция сущностей "Игра".</returns>
         [HttpGet]
+        [AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<GameResponse>))]
         public async Task<IActionResult> GetAsync(CancellationToken cancellationToken)
         {
@@ -65,6 +69,7 @@ namespace GameAspApp.Controllers
         /// </summary>
         /// <returns>Cущность "Игра".</returns>
         [HttpGet("{id}")]
+        [Authorize(Roles = UserRoles.Default)]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GameResponse))]
         public async Task<IActionResult> GetByIdAsync(long id, CancellationToken cancellationToken)
         {
@@ -78,6 +83,7 @@ namespace GameAspApp.Controllers
         /// </summary>
         /// <returns>Cущность "Игра".</returns>
         [HttpPost]
+        [Authorize(Roles = UserRoles.Admin)]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GameResponse))]
         public async Task<IActionResult> PostAsync(CreateGameRequest request, CancellationToken cancellationToken)
         {
@@ -91,6 +97,7 @@ namespace GameAspApp.Controllers
         /// </summary>
         /// <returns>Cущность "Игра".</returns>
         [HttpPut]
+        [Authorize(Roles = UserRoles.Admin)]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GameResponse))]
         public async Task<IActionResult> PutAsync(UpdateGameRequest request, CancellationToken cancellationToken)
         {
@@ -103,6 +110,7 @@ namespace GameAspApp.Controllers
         /// Удаление сущностей "Игра".
         /// </summary>
         [HttpDelete]
+        [Authorize(Roles = UserRoles.Admin)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> DeleteAsync(CancellationToken cancellationToken, params long[] ids)
         {

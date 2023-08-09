@@ -9,6 +9,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using GameAspApp.DAL.Bootstrap;
+using GameAspApp.JwtAuth.DAL.Bootstrap;
+using GameAspApp.JwtAuth.Bootstrap;
 using GameAspApp.Repositories.Bootstrap;
 using GameAspApp.Common.AutoMapper;
 
@@ -24,25 +26,29 @@ namespace GameAspApp
         public IConfiguration Configuration { get; }
 
         /// <summary>
-        /// Mетод вызывается для средой исполнения. Используется для регистрации сервисов в IoC контейнере.
+        /// MГҐГІГ®Г¤ ГўГ»Г§Г»ГўГ ГҐГІГ±Гї Г¤Г«Гї Г±Г°ГҐГ¤Г®Г© ГЁГ±ГЇГ®Г«Г­ГҐГ­ГЁГї. Г€Г±ГЇГ®Г«ГјГ§ГіГҐГІГ±Гї Г¤Г«Гї Г°ГҐГЈГЁГ±ГІГ°Г Г¶ГЁГЁ Г±ГҐГ°ГўГЁГ±Г®Гў Гў IoC ГЄГ®Г­ГІГҐГ©Г­ГҐГ°ГҐ.
         /// </summary>
-        /// <param name="services">Коллекция сервисов.</param>
+        /// <param name="services">ГЉГ®Г«Г«ГҐГЄГ¶ГЁГї Г±ГҐГ°ГўГЁГ±Г®Гў.</param>
         public void ConfigureServices(IServiceCollection services)
         {
             services.ConfigureDb(Configuration);
+            services.ConfigureAuthDb(Configuration);
+            services.ConfigureJwt(Configuration);
+
             services.ConfigureUnitOfWork();
             services.ConfigureRepositories();
             services.AddControllers();
+
             services.ConfigureServices();
             services.ConfigureAutoMapper();
             services.ConfigureSwagger();
         }
 
         /// <summary>
-        /// Mетод вызывается для средой исполнения. Используется для конфигурации окружения для обработки HTTP запроса.
+        /// MГҐГІГ®Г¤ ГўГ»Г§Г»ГўГ ГҐГІГ±Гї Г¤Г«Гї Г±Г°ГҐГ¤Г®Г© ГЁГ±ГЇГ®Г«Г­ГҐГ­ГЁГї. Г€Г±ГЇГ®Г«ГјГ§ГіГҐГІГ±Гї Г¤Г«Гї ГЄГ®Г­ГґГЁГЈГіГ°Г Г¶ГЁГЁ Г®ГЄГ°ГіГ¦ГҐГ­ГЁГї Г¤Г«Гї Г®ГЎГ°Г ГЎГ®ГІГЄГЁ HTTP Г§Г ГЇГ°Г®Г±Г .
         /// </summary>
-        /// <param name="app">Средство конфигурации приложения.</param>
-        /// <param name="env">Информация об окружении, в котором работает приложение.</param>
+        /// <param name="app">Г‘Г°ГҐГ¤Г±ГІГўГ® ГЄГ®Г­ГґГЁГЈГіГ°Г Г¶ГЁГЁ ГЇГ°ГЁГ«Г®Г¦ГҐГ­ГЁГї.</param>
+        /// <param name="env">Г€Г­ГґГ®Г°Г¬Г Г¶ГЁГї Г®ГЎ Г®ГЄГ°ГіГ¦ГҐГ­ГЁГЁ, Гў ГЄГ®ГІГ®Г°Г®Г¬ Г°Г ГЎГ®ГІГ ГҐГІ ГЇГ°ГЁГ«Г®Г¦ГҐГ­ГЁГҐ.</param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -50,9 +56,12 @@ namespace GameAspApp
                 app.UseDeveloperExceptionPage();
             }
             app.UseHttpsRedirection();
+            app.UseSwagger();
+            app.ConfigureSwaggerEndpoints();
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -60,8 +69,6 @@ namespace GameAspApp
                 endpoints.MapControllers();
             });
             app.UseCors();
-            app.UseOpenApi();
-            app.UseSwaggerUi3();
         }
     }
 }

@@ -5,7 +5,7 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
-using GameAspApp.Repositories.Interfaces.CRUD;
+using System.Threading;
 
 namespace GameAspApp.Repositories
 {
@@ -24,24 +24,22 @@ namespace GameAspApp.Repositories
         {
         }
 
-        /// <inheritdoc cref="ICreatable{TDto, TModel}.CreateAsync(TDto)"/>
-        public new async Task<GameDto> CreateAsync(GameDto dto)
+        /// <inheritdoc cref="IGameRepository.GetAsync(string, CancellationToken)"/>
+        public async Task<GameDto> GetAsync(string name, CancellationToken token = default)
         {
-            Game entity = _mapper.Map<Game>(dto);
-            foreach (GameGenre gg in entity.GameGenres)
-            {
-                gg.Entity1 = entity;
-                gg.Entity1Id = entity.Id;
-            }
-            await _dbSet.AddAsync(entity);
-            await _сontext.SaveChangesAsync();
-            return await GetAsync(entity.Id);
+            var entity = await DefaultIncludeProperties(_dbSet)
+                              .AsNoTracking()
+                              .FirstOrDefaultAsync(x => x.Name.ToUpper() == name.ToUpper());
+
+            var dto = _mapper.Map<GameDto>(entity);
+
+            return dto;
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc cref="BaseRepository{TDto, TModel}.DefaultIncludeProperties(DbSet{TModel})"/>
         protected override IQueryable<Game> DefaultIncludeProperties(DbSet<Game> dbSet)
         {
-            return _dbSet.Include(x => x.Series);
+            return _dbSet.Include(x => x.Series).Include(x=>x.GameGenres).ThenInclude(x=>x.Entity2);
         }
     }
 }

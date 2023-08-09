@@ -4,6 +4,8 @@ using GameAspApp.Repositories.Interfaces;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace GameAspApp.Repositories
 {
@@ -22,7 +24,28 @@ namespace GameAspApp.Repositories
         {
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc cref="ISeriesRepository.GetAsync(string, CancellationToken)"/>
+        public async Task<SeriesDto> GetAsync(string name, CancellationToken token = default)
+        {
+            var entity = await DefaultIncludeProperties(_dbSet)
+                              .AsNoTracking()
+                              .FirstOrDefaultAsync(x => x.Name.ToUpper() == name.ToUpper());
+
+            var dto = _mapper.Map<SeriesDto>(entity);
+
+            return dto;
+        }
+
+        /// <inheritdoc cref="BaseRepository{TDto, TModel}.CreateAsync(TDto)"/>
+        public new async Task<SeriesDto> CreateAsync(SeriesDto dto)
+        {
+            var series = await GetAsync(dto.Name);
+            if (series != null)
+                return series;
+            return await base.CreateAsync(dto);
+        }
+
+        /// <inheritdoc cref="BaseRepository{TDto, TModel}.DefaultIncludeProperties(DbSet{TModel})"/>
         protected override IQueryable<Series> DefaultIncludeProperties(DbSet<Series> dbSet)
         {
             return _dbSet;
